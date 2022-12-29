@@ -2,7 +2,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   /* background-color: #e0e0e0; */
 }
-
+td {
+  background-color: #ffffff;
+}
+/* td:hover {
+  background-color: #D3D3D3;
+} */
 .task-div {
   border: 1pt solid white;
   background-color: #D3D3D3;
