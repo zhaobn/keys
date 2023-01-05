@@ -1,17 +1,49 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   /* background-color: #e0e0e0; */
+  font-size: 20px;
 }
 td {
   background-color: #ffffff;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 4px;
 }
 /* td:hover {
   background-color: #D3D3D3;
 } */
 .task-div {
   border: 1pt solid white;
-  background-color: #D3D3D3;
+  /* background-color: #D3D3D3; */
   display: flex;
   margin:auto;
   padding: 7px
+}
+#task-grid-tab-c33 {
+  background-color: black;
+}
+
+#causal-btn-group {
+  height: 50px;
+  width: 98%;
+}
+.causal-btn {
+  height: 40px;
+  width: 50px;
+  margin-right: 5px;
+  margin-top: 0px;
+}
+
+#collect-input-textarea {
+  margin: 5px;
+  height: 200px;
+  width: 300px;
+  font-size: 20px;
+}
+
+#task-main-right-top,
+#task-main-right-bottom {
+  flex-direction: column;
+  width: 100%;
 }

@@ -5,30 +5,42 @@
     <title>Key design</title>
   </head>
   <body>
-    <div id="task-background" style="height:600px;width:800px;margin:auto;padding:10px;border:1px solid black">
-      <div id="task-top" class="task-div" style="height:12%;"></div>
-      <div id="task-main" class="task-div" style="height:70%;flex-direction:row;">
+    <div id="task-background" style="height:600px;width:800px;margin:auto;padding:10px;">
+      <!-- <div id="task-top" class="task-div" style="height:12%;"></div> -->
+      <div id="task-main" class="task-div" style="height:70%;flex-direction:row;border:1px solid black;margin-top: 80px;">
         <div id="task-main-left" class="task-div" style="width:50%;height:95%">
           <div id="task-grid-wrapper" class="task-div" style="width:95%;height:95%;">
             <div id="task-grid-main" class="task-div">
-              <table id="task-grid-tab" style="width:325px;height:325px;background-color:white;border:1px solid red;">
-                <tr> <td id="task-grid-tab-c00" onclick=myFunc(this)></td><td id="task-grid-tab-c01" onclick=myFunc(this)></td><td id="task-grid-tab-c02" onclick=myFunc(this)></td><td id="task-grid-tab-c03" onclick=myFunc(this)></td><td id="task-grid-tab-c04" onclick=myFunc(this)></td><td id="task-grid-tab-c05" onclick=myFunc(this)></td><td id="task-grid-tab-c06" onclick=myFunc(this)></td><td id="task-grid-tab-c07" onclick=myFunc(this)></td> </tr>
-                <tr> <td id="task-grid-tab-c10" onclick=myFunc(this)></td><td id="task-grid-tab-c11" onclick=myFunc(this)></td><td id="task-grid-tab-c12" onclick=myFunc(this)></td><td id="task-grid-tab-c13" onclick=myFunc(this)></td><td id="task-grid-tab-c14" onclick=myFunc(this)></td><td id="task-grid-tab-c15" onclick=myFunc(this)></td><td id="task-grid-tab-c16" onclick=myFunc(this)></td><td id="task-grid-tab-c17" onclick=myFunc(this)></td> </tr>
-                <tr> <td id="task-grid-tab-c20" onclick=myFunc(this)></td><td id="task-grid-tab-c21" onclick=myFunc(this)></td><td id="task-grid-tab-c22" onclick=myFunc(this)></td><td id="task-grid-tab-c23" onclick=myFunc(this)></td><td id="task-grid-tab-c24" onclick=myFunc(this)></td><td id="task-grid-tab-c25" onclick=myFunc(this)></td><td id="task-grid-tab-c26" onclick=myFunc(this)></td><td id="task-grid-tab-c27" onclick=myFunc(this)></td> </tr>
-                <tr> <td id="task-grid-tab-c30" onclick=myFunc(this)></td><td id="task-grid-tab-c31" onclick=myFunc(this)></td><td id="task-grid-tab-c32" onclick=myFunc(this)></td><td id="task-grid-tab-c33" onclick=myFunc(this)></td><td id="task-grid-tab-c34" onclick=myFunc(this)></td><td id="task-grid-tab-c35" onclick=myFunc(this)></td><td id="task-grid-tab-c36" onclick=myFunc(this)></td><td id="task-grid-tab-c37" onclick=myFunc(this)></td> </tr>
-                <tr> <td id="task-grid-tab-c40" onclick=myFunc(this)></td><td id="task-grid-tab-c41" onclick=myFunc(this)></td><td id="task-grid-tab-c42" onclick=myFunc(this)></td><td id="task-grid-tab-c43" onclick=myFunc(this)></td><td id="task-grid-tab-c44" onclick=myFunc(this)></td><td id="task-grid-tab-c45" onclick=myFunc(this)></td><td id="task-grid-tab-c46" onclick=myFunc(this)></td><td id="task-grid-tab-c47" onclick=myFunc(this)></td> </tr>
-                <tr> <td id="task-grid-tab-c50" onclick=myFunc(this)></td><td id="task-grid-tab-c51" onclick=myFunc(this)></td><td id="task-grid-tab-c52" onclick=myFunc(this)></td><td id="task-grid-tab-c53" onclick=myFunc(this)></td><td id="task-grid-tab-c54" onclick=myFunc(this)></td><td id="task-grid-tab-c55" onclick=myFunc(this)></td><td id="task-grid-tab-c56" onclick=myFunc(this)></td><td id="task-grid-tab-c57" onclick=myFunc(this)></td> </tr>
-                <tr> <td id="task-grid-tab-c60" onclick=myFunc(this)></td><td id="task-grid-tab-c61" onclick=myFunc(this)></td><td id="task-grid-tab-c62" onclick=myFunc(this)></td><td id="task-grid-tab-c63" onclick=myFunc(this)></td><td id="task-grid-tab-c64" onclick=myFunc(this)></td><td id="task-grid-tab-c65" onclick=myFunc(this)></td><td id="task-grid-tab-c66" onclick=myFunc(this)></td><td id="task-grid-tab-c67" onclick=myFunc(this)></td> </tr>
-                <tr> <td id="task-grid-tab-c70" onclick=myFunc(this)></td><td id="task-grid-tab-c71" onclick=myFunc(this)></td><td id="task-grid-tab-c72" onclick=myFunc(this)></td><td id="task-grid-tab-c73" onclick=myFunc(this)></td><td id="task-grid-tab-c74" onclick=myFunc(this)></td><td id="task-grid-tab-c75" onclick=myFunc(this)></td><td id="task-grid-tab-c76" onclick=myFunc(this)></td><td id="task-grid-tab-c77" onclick=myFunc(this)></td> </tr>              </table>
+              <table id="task-grid-tab" style="width:325px;height:325px;background-color:white;border:3px solid grey;">
+                <tr> <td id="task-grid-tab-c00" onclick=myFunc(this)></td><td id="task-grid-tab-c01" onclick=myFunc(this)></td><td id="task-grid-tab-c02" onclick=myFunc(this)></td><td id="task-grid-tab-c03" onclick=myFunc(this)></td><td id="task-grid-tab-c04" onclick=myFunc(this)></td><td id="task-grid-tab-c05" onclick=myFunc(this)></td><td id="task-grid-tab-c06" onclick=myFunc(this)></td> </tr>
+                <tr> <td id="task-grid-tab-c10" onclick=myFunc(this)></td><td id="task-grid-tab-c11" onclick=myFunc(this)></td><td id="task-grid-tab-c12" onclick=myFunc(this)></td><td id="task-grid-tab-c13" onclick=myFunc(this)></td><td id="task-grid-tab-c14" onclick=myFunc(this)></td><td id="task-grid-tab-c15" onclick=myFunc(this)></td><td id="task-grid-tab-c16" onclick=myFunc(this)></td> </tr>
+                <tr> <td id="task-grid-tab-c20" onclick=myFunc(this)></td><td id="task-grid-tab-c21" onclick=myFunc(this)></td><td id="task-grid-tab-c22" onclick=myFunc(this)></td><td id="task-grid-tab-c23" onclick=myFunc(this)></td><td id="task-grid-tab-c24" onclick=myFunc(this)></td><td id="task-grid-tab-c25" onclick=myFunc(this)></td><td id="task-grid-tab-c26" onclick=myFunc(this)></td> </tr>
+                <tr> <td id="task-grid-tab-c30" onclick=myFunc(this)></td><td id="task-grid-tab-c31" onclick=myFunc(this)></td><td id="task-grid-tab-c32" onclick=myFunc(this)></td><td id="task-grid-tab-c33" onclick=myFunc(this)></td><td id="task-grid-tab-c34" onclick=myFunc(this)></td><td id="task-grid-tab-c35" onclick=myFunc(this)></td><td id="task-grid-tab-c36" onclick=myFunc(this)></td> </tr>
+                <tr> <td id="task-grid-tab-c40" onclick=myFunc(this)></td><td id="task-grid-tab-c41" onclick=myFunc(this)></td><td id="task-grid-tab-c42" onclick=myFunc(this)></td><td id="task-grid-tab-c43" onclick=myFunc(this)></td><td id="task-grid-tab-c44" onclick=myFunc(this)></td><td id="task-grid-tab-c45" onclick=myFunc(this)></td><td id="task-grid-tab-c46" onclick=myFunc(this)></td> </tr>
+                <tr> <td id="task-grid-tab-c50" onclick=myFunc(this)></td><td id="task-grid-tab-c51" onclick=myFunc(this)></td><td id="task-grid-tab-c52" onclick=myFunc(this)></td><td id="task-grid-tab-c53" onclick=myFunc(this)></td><td id="task-grid-tab-c54" onclick=myFunc(this)></td><td id="task-grid-tab-c55" onclick=myFunc(this)></td><td id="task-grid-tab-c56" onclick=myFunc(this)></td> </tr>
+                <tr> <td id="task-grid-tab-c60" onclick=myFunc(this)></td><td id="task-grid-tab-c61" onclick=myFunc(this)></td><td id="task-grid-tab-c62" onclick=myFunc(this)></td><td id="task-grid-tab-c63" onclick=myFunc(this)></td><td id="task-grid-tab-c64" onclick=myFunc(this)></td><td id="task-grid-tab-c65" onclick=myFunc(this)></td><td id="task-grid-tab-c66" onclick=myFunc(this)></td> </tr>
+              </table>
             </div>
           </div>
         </div>
         <div id="task-main-right" class="task-div" style="width:45%;height:95%;flex-direction:column;">
-          <div id="task-main-right-top" class="task-div" style="width:96%;height:70%"></div>
-          <div id="task-main-right-bottom" class="task-div" style="width:96%;height:20%"></div>
+          <div id="task-main-right-top" class="task-div" style="width:96%;height:20%;">
+            <p >Example transformations:</p>
+            <div id="causal-btn-group" class="task-div" >
+              <button class="causal-btn" id="cause-btn-A" onclick="growRight(2)">A</button>
+              <button class="causal-btn" id="cause-btn-B" onclick="moveDown(1)">B</button>
+              <button class="causal-btn" id="cause-btn-C" onclick="fillUp()">C</button>
+              <button class="causal-btn" id="cause-btn-D" onclick="removeLastRow()">D</button>
+              <button class="causal-btn" id="cause-btn-D" onclick="rotateRight()">E</button>
+            </div>
+          </div>
+          <div id="task-main-right-bottom" class="task-div" style="width:96%;height:70%;">
+            <p>What are the transformations you'd like to include?</p>
+            <textarea id="collect-input-textarea"></textarea>
+          </div>
         </div>
       </div>
-      <div id="task-bottom" class="task-div" style="height:10%;"></div>
+      <!-- <div id="task-bottom" class="task-div" style="height:10%;"></div> -->
     </div>
   </body>
 </html>
