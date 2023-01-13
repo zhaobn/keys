@@ -13,6 +13,24 @@ p {
 /* td:hover {
   background-color: #D3D3D3;
 } */
+.base {
+  width:800px;
+  margin:0 auto;
+}
+
+.frame {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 10px 0px;
+  font-size: 18px;
+  border: #404040 dotted 2px;
+}
+.frame textarea {
+  height: 100px;
+  width: 99%;
+}
+
 .task-div {
   border: 1pt solid white;
   /* background-color: #D3D3D3; */
@@ -34,7 +52,38 @@ p {
   margin-right: 5px;
   margin-top: 0px;
 }
+.button-group-vc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
+.task-button, .big-button {
+  border: #e0e0e0 1px solid;
+  text-align: center;
+  border-radius: 10%;
+  margin: 2px;
+  padding: 5px 10px;
+}
+
+.task-button:hover:enabled,
+.big-button:hover:enabled,
+#sure-btn:hover {
+  background-color: #116466;
+  color: #e0e0e0;
+}
+
+.task-button:disabled,
+.big-button:disabled,
+.task-button:disabled:hover,
+.big-button:disabled:hover {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.big-button {
+  font-size: 18px;
+  padding: 10px 30px;
+}
 #collect-input-textarea {
   margin: 5px;
   height: 200px;
@@ -46,4 +95,9 @@ p {
 #task-main-right-bottom {
   flex-direction: column;
   width: 100%;
+}
+#consent-info {
+  height: 400px;
+  overflow: scroll;
+  padding: 0 0 20px 0;
 }
