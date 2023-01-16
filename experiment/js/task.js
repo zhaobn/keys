@@ -1,30 +1,35 @@
 
-const mode = '';
+const mode = 'dev';
 
-// instruction page 0
-let insCounter = 0;
-const insBtn0 = document.getElementById('task-btn-instruction0-next');
-insBtn0.onclick = () => {
-  if (insCounter < 3) {
-    showNext(`instruction-0${insCounter+1}`, 'block', 0);
-    insCounter += 1
+// instruction page 0a
+let insCounter0a = 0;
+const insBtn0a = document.getElementById('task-btn-instruction0a-next');
+insBtn0a.onclick = () => {
+  if (insCounter0a < 3) {
+    showNext(`instruction-0${insCounter0a+1}`, 'block', 0);
+    insCounter0a += 1
   } else {
-    hide('instruction-0')
+    hide('instruction-0a')
+    showNext('instruction-0b', 'flex', 0)
+  }
+}
+// instruction page 0b
+let insCounter0b = 0;
+const insBtn0b = document.getElementById('task-btn-instruction0b-next');
+insBtn0b.onclick = () => {
+  if (insCounter0b < 1) {
+    showNext(`instruction-1${insCounter0b+1}`, 'block', 0);
+    insCounter0b += 1
+  } else {
+    hide('instruction-0b')
     showNext('instruction-1', 'flex', 0)
   }
 }
-
 // instruction page 1
-let insCounter1 = 0;
 const insBtn1 = document.getElementById('task-btn-instruct1-next');
 insBtn1.onclick = () => {
-  if (insCounter1 < 2) {
-    showNext(`instruction-1${insCounter1+1}`, 'block', 0);
-    insCounter1 += 1
-  } else {
-    hide('instruction-1')
-    showNext('instruction-2', 'flex', 0)
-  }
+  hide('instruction-1')
+  showNext('instruction-2', 'flex', 0)
 }
 
 // instruction page 2
@@ -86,6 +91,29 @@ doneBtn.onclick = () => {
 
 // Dev show all
 const devBtn = document.getElementById('dev-show-all');
+
+if (mode == 'dev') {
+  devBtn.style.display = 'none'
+  showNext('instruction-01', 'block', 0);
+  showNext('instruction-02', 'block', 0);
+  showNext('instruction-03', 'block', 0);
+
+  showNext('instruction-0b', 'flex', 0)
+  showNext('instruction-11', 'block', 0);
+  showNext('instruction-12', 'block', 0);
+
+  showNext('instruction-1', 'flex', 0);
+  showNext('instruction-2', 'flex', 0);
+  showNext('instruction-3', 'flex', 0);
+  showNext('instruction-4', 'flex', 0);
+
+  showNext('collect-0', 'flex', 0);
+  showNext('collect-1', 'flex', 0);
+
+  showNext('target-easy', 'flex', 0);
+  showNext('target-hard', 'flex', 0);
+}
+
 if (mode != 'dev') {
   devBtn.style.display = 'none'
 }
@@ -94,10 +122,11 @@ devBtn.onclick = () => {
   showNext('instruction-02', 'block', 0);
   showNext('instruction-03', 'block', 0);
 
-  showNext('instruction-1', 'flex', 0);
+  showNext('instruction-0b', 'flex', 0)
   showNext('instruction-11', 'block', 0);
   showNext('instruction-12', 'block', 0);
 
+  showNext('instruction-1', 'flex', 0);
   showNext('instruction-2', 'flex', 0);
   showNext('instruction-3', 'flex', 0);
   showNext('instruction-4', 'flex', 0);

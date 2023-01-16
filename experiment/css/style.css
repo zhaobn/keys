@@ -71,6 +71,55 @@ p {
   font-size: 25px;
 }
 
+.key-maker-body {
+  height: 140px;
+  width: 200px;
+  background-color: silver;
+  display: flex;
+  flex-direction: column;
+  border: solid 2px black;
+  box-shadow: 5px 10px #888888;
+
+}
+.key-maker-btngroup{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.key-maker-btn-1,
+.key-maker-btn-2,
+.key-maker-btn-3 {
+  height: 40px;
+  width: 60px;
+  background-color: aliceblue;
+  margin: 10px;
+  text-align: center;
+  font-size: 25px;
+
+}
+
+.key-maker-btngroup-bottom  {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+.key-maker-btn-r {
+  height: 40px;
+  width: 80%;
+  background-color: lightblue;
+  margin: 10px;
+  text-align: center;
+  font-size: 22px;
+
+}
+
+
+
+
+
+
 #task-grid-tab-c33 {
   background-color: black;
 }
