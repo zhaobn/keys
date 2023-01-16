@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Experiment</title>
+  </head>
+  <body >
+    <div class="base">
+      <button id="dev-show-all">Dev show all</button>
+      <div class="task-div" id="instruction-0">
+        <div>
+          <p id="instruction-00">Thank you for joining this task. </p>
+          <p id="instruction-01" style="display: none;">In this task, you play the role of a master magician in the fantasy world of Sparkling Gems.</p>
+          <p id="instruction-02" style="display: none;">Treasure gems in this world are protected by locks, with lock holes of various shapes.</p>
+          <p id="instruction-03" style="display: none;">As a magician, you can use a magical key-maker to make keys that match those lock holes, and then unlock them.</p>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-instruction0-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div class="task-div" id="instruction-1" style="display: none;">
+        <div>
+          <p id="instruction-10">Here is an example key-maker.</p>
+          <p id="instruction-11" style="display: none;">A key-maker has many buttons. Each button can transform the material into some shapes.</p>
+          <p id="instruction-12" style="display: none;">Now try pressing the first button:</p>
+        </div>
+        <div>
+          <div id="key-maker-1"></div>
+          <div id="key-demo-1"></div>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-instruct1-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div class="task-div" id="instruction-2" style="display: none;">
+        <div>
+          <p>Here is an example key-maker.</p>
+          <p>A key-maker has many buttons. Each button can transform the material into some shapes.</p>
+          <p>And the second button:</p>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-instruct2-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div class="task-div" id="instruction-3" style="display: none;">
+        <div>
+          <p>Here is an example key-maker.</p>
+          <p>A key-maker has many buttons. Each button can transform the material into some shapes.</p>
+          <p>And a third button:</p>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-instruct3-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div class="task-div" id="instruction-4" style="display: none;">
+        <div>
+          <p>Here is an example key-maker.</p>
+          <p>A key-maker has many buttons. Each button can transform the material into some shapes.</p>
+          <p>Feel free to play with them as much as you want, see what button combinations can do.</p>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-instruct4-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div class="task-div" id="collect-0" style="display: none;">
+        <div>
+          <p>We'd like to hear your ideas.</p>
+          <p>What are the transformations you wish to have?</p>
+          <p>Please draw the shape before in the box on the left, and the shape after in the box on the right.</p>
+          <p>Here is an example drawing for a button you just tested:</p>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-collect0-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div class="task-div" id="collect-1" style="display: none;">
+        <div>
+          <p>What are the transformations you wish to have?</p>
+          <p>Please draw the shape before in the box on the left, and the shape after in the box on the right.</p>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-collect1-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div class="task-div" id="target-easy" style="display: none;">
+        <div>
+          <p>A good key-maker is also a good lock-designer.</p>
+          <p>With the transformations you just provided, what are the lockholes that you think would be easy to crack?</p>
+          <p>Please draw the lockhole below.</p>
+        </div>
+        <div>
+          <p>And describe briefly how to make this shape using the transformations you provided.</p>
+          <textarea class="task-textbox"></textarea>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-target-easy-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div class="task-div" id="target-hard" style="display: none;">
+        <div>
+          <p>And what are the lockholes that you think would be easy to crack, with the transformations you just provided?</p>
+          <p>Please draw the lockhole below.</p>
+        </div>
+        <div>
+          <p>And describe briefly how to make this shape using the transformations you provided.</p>
+          <textarea class="task-textbox"></textarea>
+        </div>
+        <div class="task-btn-cls">
+          <button class="task-btn" id='task-btn-target-hard-next'>Next &#62;&#62;</button>
+        </div>
+      </div>
+      <div id="debrief" class="base" style="display: none;">
+        <h1>Thank you for your contributions to science</h1>
+        <h4>You will be eligible for full payment once you answer the following questions.</h4>
+        <h4><b>Note</b>: To continue, please answer <span style="color:red">all questions</span>.</h4>
+        <form id="postquiz"  class='frame' action="debrief" method="post">
+          <b>1.&nbsp;</b>How old are you?:
+           <input
+              id="age" name="age" class="posttestQ" type="number"
+              maxlength = "3" min="18" max="100"step = "1"
+            > years
+          </p>
+          <p>
+            <b>2.&nbsp;</b>What is your gender?
+            <select id="sex" name="sex" class="posttestQ">
+              <option value="noresp" SELECTED></option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="other">Other</option>
+              <option value="noresponse">I&rsquo;d prefer not to respond</option>
+            </select>
+          </p>
+          <p>
+            <b>3.&nbsp;</b>On a scale of 1-10 (where 10 is the most engaged), please rate how <b>ENGAGING</b> you found the task:
+            <select id="engagement" name="engagement" class="posttestQ">
+              <option value="--" SELECTED>
+              <option value="10">10 - Very engaging</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5 - Moderately</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+              <option value="0">0 - Not engaged</option>
+            </select>
+          </p>
+          <p>
+            <b>4.&nbsp;</b>On a scale of 1-10 (where 10 is the most difficult), please rate how <b>DIFFICULT</b> you found the task:
+            <select id="difficulty" name="difficulty" class="posttestQ">
+              <option value="--" SELECTED>
+              <option value="10">10 - Very difficult</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5 - Moderately difficult</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+              <option value="0">0 - Not difficult at all</option>
+            </select>
+          </p>
+          <p><b>5.&nbsp;</b>Do you have any comments regarding the experiment?</p>
+          <textarea name="feedback" id="feedback" placeholder="Please type here"></textarea>
+        </form>
+        <div class='button-group-vc'>
+          <button class='big-button' id='done-btn' disabled>Done</button>
+        </div>
+      </div>
+      <div id="completed" class="base" style="display: none;">
+        <div id="code-div">
+          <h1>Your completion code is:</h1>
+          <h1 id="completion-code"></h1>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="../js/tools.js"></script>
+  <script type="text/javascript" src="../js/task.js"></script>
+</html>

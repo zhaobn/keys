@@ -7,8 +7,13 @@ td {
   background-color: #ffffff;
 }
 p {
-  margin-top: 0;
-  margin-bottom: 4px;
+  margin: 30px 20px 0px;
+  font-size: 30px;
+}
+#consent-info p,
+#debrief p {
+  font-size: 18px;
+  margin: 20px 0;
 }
 /* td:hover {
   background-color: #D3D3D3;
@@ -32,12 +37,40 @@ p {
 }
 
 .task-div {
-  border: 1pt solid white;
+  height: 600px;
+  width: 800px;
+  border: #404040 dotted 2px;
   /* background-color: #D3D3D3; */
+  margin-top: 50px;
+  padding: 10px;
   display: flex;
-  margin:auto;
-  padding: 7px
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.task-btn-cls {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.task-btn {
+  font-size: 25px;
+  background-color: #ffffff;
+  border: 0;
+  color: #808080;
+  padding: 5px;
+}
+.task-btn:hover{
+  background-color: #e0e0e0;
+  color: black;
+}
+.task-textbox {
+  margin: 8px 20px;
+  height: 100px;
+  width: 90%;
+  font-size: 25px;
+}
+
 #task-grid-tab-c33 {
   background-color: black;
 }
