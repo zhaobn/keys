@@ -99,13 +99,16 @@ for (let i = 0; i < N; i++) {
     let tcell = tcCodeList.insertCell();
     tcell.id = `key-demo-tab-1-c` + i.toString() + j.toString();
     if (i == Math.floor(N/2) && j == Math.floor(N/2)) {
-      console.log(tcell);
       tcell.style.backgroundColor = 'black';
     }
   }
 }
+let demoBtnA = document.getElementById('demo-btn-A');
+demoBtnA.onclick = () => growRight('key-demo-tab-1', demoGrid1, 1, N);
 
 
+let demoRestetBtn = document.getElementById('demo-btn-reset-A');
+demoRestetBtn.onclick = () => resetGrid('key-demo-tab-1', demoGrid1, N);
 
 
 // Dev show all

@@ -33,12 +33,16 @@ function isFilled (formID) {
 }
 
 /* Grid generator */
-function makeGridVars(n) {
-  let varList = []
+function makeGridVars(n, showCenter = true) {
+  let varList = {};
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
-      let cId = i.toString() + j.toString();
-      varList.push(`'c${cId}': 0,`)
+      let cId = 'c' + i.toString() + j.toString();
+      if (showCenter && i==Math.floor(n/2) && j==Math.floor(n/2)) {
+        varList[cId] = 1;
+      } else {
+        varList[cId] = 0;
+      }
     }
   }
   return varList
@@ -63,19 +67,33 @@ function fillBlock (divPrefix, tabVars, blockId) {
   blockEl.style.backgroundColor = 'black';
   tabVars[blockId] += 1;
 }
-function clearBlock (blockId) {
-  let blockEl = document.getElementById(`task-grid-tab-${blockId}`);
+function clearBlock (divPrefix, tabVars, blockId) {
+  let blockEl = document.getElementById(`${divPrefix}-${blockId}`);
   blockEl.style.backgroundColor = 'white';
   tabVars[blockId] += 1;
 }
-function growRight(divPrefix, tabVars, n) {
+function growRight(divPrefix, tabVars, n, limit) {
   const curIds = getCurrentBlocks(tabVars);
   const lastBlock = curIds.slice(-1)[0];
   const [ lastX, lastY ] = [ getX(lastBlock), getY(lastBlock) ];
 
-  if (lastY+n < 7) {
+  if (lastY+n < limit) {
     for (let i = 1; i < n+1; i++) {
-      fillBlock(divPrefix, `c${lastX}${lastY+i}`)
+      fillBlock(divPrefix, tabVars, `c${lastX}${lastY+i}`)
+    }
+  }
+}
+function resetGrid(divPrefix, tabVars, limit, keepCenter = true) {
+  for (let i = 0; i < limit; i++) {
+    for (let j = 0; j < limit; j++) {
+      let blockId = 'c' + i.toString() + j.toString();
+      if (keepCenter && i==Math.floor(limit/2) && j==Math.floor(limit/2)) {
+        fillBlock(divPrefix, tabVars, blockId);
+        tabVars[blockId] = 1;
+      } else {
+        clearBlock(divPrefix, tabVars, blockId);
+        tabVars[blockId] = 0;
+      }
     }
   }
 }
