@@ -105,10 +105,65 @@ for (let i = 0; i < N; i++) {
 }
 let demoBtnA = document.getElementById('demo-btn-A');
 demoBtnA.onclick = () => growRight('key-demo-tab-1', demoGrid1, 1, N);
-
-
 let demoRestetBtn = document.getElementById('demo-btn-reset-A');
 demoRestetBtn.onclick = () => resetGrid('key-demo-tab-1', demoGrid1, N);
+
+
+let demoGrid2 = makeGridVars(N);
+let gridDiv2 = document.getElementById('key-demo-tab-2');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = gridDiv2.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `key-demo-tab-2-c` + i.toString() + j.toString();
+    if (i == Math.floor(N/2) && j == Math.floor(N/2)) {
+      tcell.style.backgroundColor = 'black';
+    }
+  }
+}
+let demoBtnB = document.getElementById('demo-btn-B');
+demoBtnB.onclick = () => moveDown('key-demo-tab-2', demoGrid2, 1, N);
+let demoRestetBtnB = document.getElementById('demo-btn-reset-B');
+demoRestetBtnB.onclick = () => resetGrid('key-demo-tab-2', demoGrid2, N);
+
+
+let demoGrid3 = makeGridVars(N);
+let gridDiv3 = document.getElementById('key-demo-tab-3');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = gridDiv3.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `key-demo-tab-3-c` + i.toString() + j.toString();
+    if (i == Math.floor(N/2) && j == Math.floor(N/2)) {
+      tcell.style.backgroundColor = 'black';
+    }
+  }
+}
+let demoBtnC = document.getElementById('demo-btn-C');
+demoBtnC.onclick = () => removeLastRow('key-demo-tab-3', demoGrid3);
+let demoRestetBtnC = document.getElementById('demo-btn-reset-C');
+demoRestetBtnC.onclick = () => resetGrid('key-demo-tab-3', demoGrid3, N);
+
+
+let demoGrid4 = makeGridVars(N);
+let gridDiv4 = document.getElementById('key-demo-tab-4');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = gridDiv4.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `key-demo-tab-4-c` + i.toString() + j.toString();
+    if (i == Math.floor(N/2) && j == Math.floor(N/2)) {
+      tcell.style.backgroundColor = 'black';
+    }
+  }
+}
+document.getElementById('demo-btn-4A').onclick = () => growRight('key-demo-tab-4', demoGrid4, 1, N);
+document.getElementById('demo-btn-4B').onclick = () => moveDown('key-demo-tab-4', demoGrid4, 1, N);
+document.getElementById('demo-btn-4C').onclick = () => removeLastRow('key-demo-tab-4', demoGrid4);
+document.getElementById('demo-btn-4reset').onclick = () => resetGrid('key-demo-tab-4', demoGrid4, N);
+
+
+
 
 
 // Dev show all

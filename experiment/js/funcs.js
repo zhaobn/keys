@@ -83,6 +83,34 @@ function growRight(divPrefix, tabVars, n, limit) {
     }
   }
 }
+function moveDown(divPrefix, tabVars, n, limit) {
+  let curIds = getCurrentBlocks(tabVars);
+  const lastBlock = curIds.slice(-1)[0];
+  if (getX(lastBlock)+n < limit) {
+    let newIds = [];
+    curIds.forEach(el => {
+      let newId = `c${getX(el)+n}${getY(el)}`;
+      newIds.push(newId)
+    })
+
+    const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
+    const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
+
+    toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
+    toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+  }
+}
+function removeLastRow(divPrefix, tabVars) {
+  const curIds = getCurrentBlocks(tabVars);
+  if (curIds.length > 0) {
+    const lastBlock =  curIds.slice(-1)[0];
+
+    curIds.forEach(el => {
+      let curX = parseInt(el[1]);
+      (curX == getX(lastBlock))? clearBlock(divPrefix, tabVars, el): null;
+    })
+  }
+}
 function resetGrid(divPrefix, tabVars, limit, keepCenter = true) {
   for (let i = 0; i < limit; i++) {
     for (let j = 0; j < limit; j++) {
