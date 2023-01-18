@@ -115,9 +115,20 @@ p {
 
 }
 
-
-
-
+.key-maker-demo {
+  border: solid 2px black;
+  height: 300px;
+  width: 300px;
+}
+.key-maker-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.key-demo-tabs {
+  height: 100%;
+  width: 100%;
+}
 
 
 #task-grid-tab-c33 {

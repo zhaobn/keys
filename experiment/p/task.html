@@ -21,10 +21,10 @@
       <div class="task-div" id="instruction-0b" style="display: none;">
         <div>
           <p id="instruction-10">Here is an example key-maker.</p>
-          <p id="instruction-11" style="display: none;">A key-maker has many buttons. Each button can transform the material into some shapes.</p>
+          <p id="instruction-11" style="opacity: 0;">A key-maker has many buttons. Each button can transform the material into some shapes.</p>
         </div>
         <div>
-          <div id="key-maker-1" style="display:flex;justify-content:center;">
+          <div id="key-maker-0" style="display:flex;justify-content:center;">
             <div class="key-maker-body">
               <div class="key-maker-btngroup">
                 <button class="key-maker-btn-1" >A</button>
@@ -36,9 +36,6 @@
               </div>
             </div>
           </div>
-          <div id="key-demo-1">
-            <div></div>
-          </div>
         </div>
         <div class="task-btn-cls">
           <button class="task-btn" id='task-btn-instruction0b-next'>Next &#62;&#62;</button>
@@ -46,10 +43,10 @@
       </div>
       <div class="task-div" id="instruction-1" style="display: none;">
         <div>
-          <p id="instruction-12" style="display: none;">Now try pressing the first button:</p>
+          <p id="instruction-10" >Now try pressing the first button:</p>
         </div>
         <div>
-          <div id="key-maker-2" style="display:flex;justify-content:center;">
+          <div id="key-maker-1" class="key-maker-wrapper">
             <div class="key-maker-body">
               <div class="key-maker-btngroup">
                 <button class="key-maker-btn-1">A</button>
@@ -60,8 +57,10 @@
                 <button class="key-maker-btn-r">Reset</button>
               </div>
             </div>
+            <div id="key-demo-1" class="key-maker-demo">
+              <table id="key-demo-tab-1" class="key-demo-tabs"></table>
+            </div>
           </div>
-          <div id="key-demo-2"></div>
         </div>
         <div class="task-btn-cls">
           <button class="task-btn" id='task-btn-instruct1-next'>Next &#62;&#62;</button>
@@ -206,6 +205,6 @@
       </div>
     </div>
   </body>
-  <script type="text/javascript" src="../js/tools.js"></script>
+  <script type="text/javascript" src="../js/funcs.js"></script>
   <script type="text/javascript" src="../js/task.js"></script>
 </html>

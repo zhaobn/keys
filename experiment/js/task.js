@@ -1,5 +1,7 @@
 
 const mode = 'dev';
+const N = 7; // use an odd number to make "center" easy to locate
+
 
 // instruction page 0a
 let insCounter0a = 0;
@@ -18,7 +20,7 @@ let insCounter0b = 0;
 const insBtn0b = document.getElementById('task-btn-instruction0b-next');
 insBtn0b.onclick = () => {
   if (insCounter0b < 1) {
-    showNext(`instruction-1${insCounter0b+1}`, 'block', 0);
+    reveal(`instruction-1${insCounter0b+1}`);
     insCounter0b += 1
   } else {
     hide('instruction-0b')
@@ -88,6 +90,23 @@ doneBtn.onclick = () => {
 };
 
 
+// Grid
+let demoGrid1 = makeGridVars(N);
+let gridDiv = document.getElementById('key-demo-tab-1');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = gridDiv.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `key-demo-tab-1-c` + i.toString() + j.toString();
+    if (i == Math.floor(N/2) && j == Math.floor(N/2)) {
+      console.log(tcell);
+      tcell.style.backgroundColor = 'black';
+    }
+  }
+}
+
+
+
 
 // Dev show all
 const devBtn = document.getElementById('dev-show-all');
@@ -99,8 +118,7 @@ if (mode == 'dev') {
   showNext('instruction-03', 'block', 0);
 
   showNext('instruction-0b', 'flex', 0)
-  showNext('instruction-11', 'block', 0);
-  showNext('instruction-12', 'block', 0);
+  reveal('instruction-11');
 
   showNext('instruction-1', 'flex', 0);
   showNext('instruction-2', 'flex', 0);
@@ -114,27 +132,26 @@ if (mode == 'dev') {
   showNext('target-hard', 'flex', 0);
 }
 
-if (mode != 'dev') {
-  devBtn.style.display = 'none'
-}
-devBtn.onclick = () => {
-  showNext('instruction-01', 'block', 0);
-  showNext('instruction-02', 'block', 0);
-  showNext('instruction-03', 'block', 0);
+// if (mode != 'dev') {
+//   devBtn.style.display = 'none'
+// }
+// devBtn.onclick = () => {
+//   showNext('instruction-01', 'block', 0);
+//   showNext('instruction-02', 'block', 0);
+//   showNext('instruction-03', 'block', 0);
 
-  showNext('instruction-0b', 'flex', 0)
-  showNext('instruction-11', 'block', 0);
-  showNext('instruction-12', 'block', 0);
+//   showNext('instruction-0b', 'flex', 0)
+//   showNext('instruction-11', 'block', 0);
 
-  showNext('instruction-1', 'flex', 0);
-  showNext('instruction-2', 'flex', 0);
-  showNext('instruction-3', 'flex', 0);
-  showNext('instruction-4', 'flex', 0);
+//   showNext('instruction-1', 'flex', 0);
+//   showNext('instruction-2', 'flex', 0);
+//   showNext('instruction-3', 'flex', 0);
+//   showNext('instruction-4', 'flex', 0);
 
-  showNext('collect-0', 'flex', 0);
-  showNext('collect-1', 'flex', 0);
+//   showNext('collect-0', 'flex', 0);
+//   showNext('collect-1', 'flex', 0);
 
-  showNext('target-easy', 'flex', 0);
-  showNext('target-hard', 'flex', 0);
+//   showNext('target-easy', 'flex', 0);
+//   showNext('target-hard', 'flex', 0);
 
-}
+// }
