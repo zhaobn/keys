@@ -49,6 +49,19 @@ function makeGridVars(n, showCenter = true) {
 }
 
 /* Key-maker button functions */
+function recordClick(div, tabVars) {
+  const cellId = div.id.split('-')[3];
+  tabVars[cellId] += 1;
+  div.style.backgroundColor = (tabVars[cellId] % 2 == 1) ? 'black' : 'white';
+}
+function setInitClick(div, divPostId, tabVarThis, tabVarPost) {
+  const cellId = div.id.split('-')[3];
+  tabVarThis[cellId] += 1;
+  tabVarPost[cellId] += 1;
+  div.style.backgroundColor = (tabVarThis[cellId] % 2 == 1) ? 'black' : 'white';
+  const repCellId = divPostId + '-' + cellId;
+  document.getElementById(repCellId).style.backgroundColor = (tabVarPost[cellId] % 2 == 1) ? 'black' : 'white';
+}
 function getX(tabId) {
   return parseInt(tabId[1])
 }

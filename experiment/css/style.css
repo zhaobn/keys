@@ -129,7 +129,27 @@ p {
   height: 100%;
   width: 100%;
 }
+.drawing-wrapper {
+  display: flex;
+  margin: 0 40px;
+  justify-content: space-between;
 
+}
+.drawing-box {
+  width: 48%;
+
+}
+.drawing-box p {
+  font-size: 20px;
+  margin: 0px;
+}
+.task-textbox {
+  border: solid 1px black;
+  height: 250px;
+  width: 300;
+  margin: 5px 0;
+  font-size: 20px;
+}
 
 #task-grid-tab-c33 {
   background-color: black;

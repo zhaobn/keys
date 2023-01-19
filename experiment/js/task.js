@@ -1,5 +1,5 @@
 
-const mode = 'dev';
+const mode = '';
 const N = 7; // use an odd number to make "center" easy to locate
 
 
@@ -163,6 +163,79 @@ document.getElementById('demo-btn-4C').onclick = () => removeLastRow('key-demo-t
 document.getElementById('demo-btn-4reset').onclick = () => resetGrid('key-demo-tab-4', demoGrid4, N);
 
 
+// Demo drawing
+let demoBeforeDiv = document.getElementById('key-drawing-before');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = demoBeforeDiv.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    if (i == Math.floor(N/2) && j == Math.floor(N/2)) {
+      tcell.style.backgroundColor = 'black';
+    }
+  }
+}
+let demoAfterDiv = document.getElementById('key-drawing-after');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = demoAfterDiv.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    if (i == Math.floor(N/2) && j == Math.floor(N/2)) {
+      tcell.style.backgroundColor = 'black';
+    }
+    if (i == Math.floor(N/2) && j == Math.floor(N/2)+1) {
+      tcell.style.backgroundColor = 'black';
+    }
+  }
+}
+
+
+// Collect button drawings
+let buttonDesigns = [];
+
+let btnDes1a = makeGridVars(N);
+let btnDes1b = makeGridVars(N);
+let btnDes1aDiv = document.getElementById('key-collect-1a');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = btnDes1aDiv.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `key-collect-1a-c` + i.toString() + j.toString();
+    tcell.setAttribute("onclick", "setInitClick(this,'key-collect-1b',btnDes1a,btnDes1b)")
+  }
+}
+let btnDes1bDiv = document.getElementById('key-collect-1b');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = btnDes1bDiv.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `key-collect-1b-c` + i.toString() + j.toString();
+    tcell.setAttribute("onclick", "recordClick(this,btnDes1b)")
+  }
+}
+
+// Collect lock drawings
+let targetDesigns = [];
+
+let targetVar1 = makeGridVars(N);
+let targetDiv1 = document.getElementById('lock-collect-1');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = targetDiv1.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `lock-collect-1-c` + i.toString() + j.toString();
+    tcell.setAttribute("onclick", "recordClick(this,targetVar1)")
+  }
+}
+let targetVar2 = makeGridVars(N);
+let targetDiv2 = document.getElementById('lock-collect-2');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = targetDiv2.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `lock-collect-2-c` + i.toString() + j.toString();
+    tcell.setAttribute("onclick", "recordClick(this,targetVar2)")
+  }
+}
 
 
 

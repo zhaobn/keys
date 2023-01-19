@@ -146,6 +146,16 @@
           <p>We'd like to hear your ideas.</p>
           <p>Below is an example drawing for a button you just tested:</p>
         </div>
+        <div class="drawing-wrapper">
+          <div class="drawing-box">
+            Before
+            <div class="key-maker-demo"><table id="key-drawing-before" class="key-demo-tabs"></table></div>
+          </div>
+          <div class="drawing-box">
+            After
+            <div class="key-maker-demo"><table id="key-drawing-after" class="key-demo-tabs"></table></div>
+          </div>
+        </div>
         <div class="task-btn-cls">
           <button class="task-btn" id='task-btn-collect0-next'>Next &#62;&#62;</button>
         </div>
@@ -153,7 +163,17 @@
       <div class="task-div" id="collect-1" style="display: none;">
         <div>
           <p>What are the transformations you wish to have?</p>
-          <p>Please draw the shape before in the box on the left, and the shape after in the box on the right.</p>
+          <p>You can draw it by clicking on the boxes below.</p>
+        </div>
+        <div class="drawing-wrapper">
+          <div class="drawing-box">
+            Before
+            <div class="key-maker-demo"><table id="key-collect-1a" class="key-demo-tabs"></table></div>
+          </div>
+          <div class="drawing-box">
+            After
+            <div class="key-maker-demo"><table id="key-collect-1b" class="key-demo-tabs"></table></div>
+          </div>
         </div>
         <div class="task-btn-cls">
           <button class="task-btn" id='task-btn-collect1-next'>Next &#62;&#62;</button>
@@ -163,11 +183,16 @@
         <div>
           <p>A good key-maker is also a good lock-designer.</p>
           <p>With the transformations you just provided, what are the lockholes that you think would be easy to crack?</p>
-          <p>Please draw the lockhole below.</p>
         </div>
-        <div>
-          <p>And describe briefly how to make this shape using the transformations you provided.</p>
-          <textarea class="task-textbox"></textarea>
+        <div class="drawing-wrapper">
+          <div class="drawing-box">
+            <p>Please draw the lockhole below.</p>
+            <div class="key-maker-demo"><table id="lock-collect-1" class="key-demo-tabs"></table></div>
+          </div>
+          <div class="drawing-box">
+            <p>And describe briefly how to make this shape using the transformations you provided.</p>
+            <textarea class="task-textbox"></textarea>
+          </div>
         </div>
         <div class="task-btn-cls">
           <button class="task-btn" id='task-btn-target-easy-next'>Next &#62;&#62;</button>
@@ -176,11 +201,16 @@
       <div class="task-div" id="target-hard" style="display: none;">
         <div>
           <p>And what are the lockholes that you think would be easy to crack, with the transformations you just provided?</p>
-          <p>Please draw the lockhole below.</p>
         </div>
-        <div>
-          <p>And describe briefly how to make this shape using the transformations you provided.</p>
-          <textarea class="task-textbox"></textarea>
+        <div class="drawing-wrapper">
+          <div class="drawing-box">
+            <p>Please draw the lockhole below.</p>
+            <div class="key-maker-demo"><table id="lock-collect-2" class="key-demo-tabs"></table></div>
+          </div>
+          <div class="drawing-box">
+            <p>And describe briefly how to make this shape using the transformations you provided.</p>
+            <textarea class="task-textbox"></textarea>
+          </div>
         </div>
         <div class="task-btn-cls">
           <button class="task-btn" id='task-btn-target-hard-next'>Next &#62;&#62;</button>
