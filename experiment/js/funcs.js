@@ -37,7 +37,7 @@ function makeGridVars(n, showCenter = true) {
   let varList = {};
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
-      let cId = 'c' + i.toString() + j.toString();
+      let cId = makeUnit(i, j);
       if (showCenter && i==Math.floor(n/2) && j==Math.floor(n/2)) {
         varList[cId] = 1;
       } else {
@@ -63,10 +63,13 @@ function setInitClick(div, divPostId, tabVarThis, tabVarPost) {
   document.getElementById(repCellId).style.backgroundColor = (tabVarPost[cellId] % 2 == 1) ? 'black' : 'white';
 }
 function getX(tabId) {
-  return parseInt(tabId[1])
+  return parseInt(tabId.slice(1).split('-')[0])
 }
 function getY(tabId) {
-  return parseInt(tabId[2])
+  return parseInt(tabId.slice(1).split('-')[1])
+}
+function makeUnit(x, y) {
+  return `c${x}-${y}`
 }
 function getCurrentBlocks (tabVars) {
   const selected = []
@@ -92,7 +95,7 @@ function growRight(divPrefix, tabVars, n, limit) {
 
   if (lastY+n < limit) {
     for (let i = 1; i < n+1; i++) {
-      fillBlock(divPrefix, tabVars, `c${lastX}${lastY+i}`)
+      fillBlock(divPrefix, tabVars, makeUnit(lastX, lastY+1));
     }
   }
 }
@@ -101,16 +104,78 @@ function moveDown(divPrefix, tabVars, n, limit) {
   const lastBlock = curIds.slice(-1)[0];
   if (getX(lastBlock)+n < limit) {
     let newIds = [];
-    curIds.forEach(el => {
-      let newId = `c${getX(el)+n}${getY(el)}`;
-      newIds.push(newId)
-    })
+    curIds.forEach(el => newIds.push(makeUnit(getX(el)+n, getY(el))));
 
     const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
     const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
 
     toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
     toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+  }
+}
+function moveUp(divPrefix, tabVars, n) {
+  let curIds = getCurrentBlocks(tabVars);
+  const firstBlock = curIds[0];
+  if (getX(firstBlock)-n >= 0) {
+    let newIds = [];
+    curIds.forEach(el => newIds.push(makeUnit(getX(el)-n, getY(el))));
+
+    const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
+    const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
+
+    toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
+    toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+  }
+}
+function moveRight(divPrefix, tabVars, limit) {
+  let curIds = getCurrentBlocks(tabVars);
+  let curYs = curIds.map(el=>getY(el));
+  if (Math.max(...curYs)+1 < limit) {
+    let newIds = [];
+    curIds.forEach(el => newIds.push(makeUnit(getX(el), getY(el)+1)));
+
+    const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
+    const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
+
+    toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
+    toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+  }
+}
+function moveLeft(divPrefix, tabVars) {
+  let curIds = getCurrentBlocks(tabVars);
+  let curYs = curIds.map(el=>getY(el));
+  if (Math.min(...curYs)-1 >= 0) {
+    let newIds = [];
+    curIds.forEach(el => newIds.push(makeUnit(getX(el), getY(el)-1)));
+
+    const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
+    const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
+
+    toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
+    toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+  }
+}
+function rotateRight(divPrefix, tabVars, limit) {
+  const curIds = getCurrentBlocks(tabVars);
+  const centre = curIds.slice(-1)[0];
+
+  let newCoords = [];
+  curIds.forEach(el => {
+    let [ relX, relY ] = [ getX(el)-getX(centre), getY(el)-getY(centre) ];
+    let [ newX, newY ] = [ getX(centre) + relY, getY(centre)-relX ];
+    newCoords.push(makeUnit(newX, newY));
+  })
+
+  // check limits
+  let isGood = 1;
+  let newXs = newCoords.map(el=>getX(el));
+  let newYs = newCoords.map(el=>getY(el));
+  isGood = isGood & (Math.min(...newXs)>=0) & (Math.max(...newXs)<limit);
+  isGood = isGood & (Math.min(...newYs)>=0) & (Math.max(...newYs)<limit);
+
+  if (isGood) {
+    curIds.forEach(el => clearBlock(divPrefix, tabVars, el));
+    newCoords.forEach(el => fillBlock(divPrefix, tabVars, el));
   }
 }
 function removeLastRow(divPrefix, tabVars) {
@@ -137,4 +202,42 @@ function resetGrid(divPrefix, tabVars, limit, keepCenter = true) {
       }
     }
   }
+}
+function addSquare(divPrefix, tabVars, tabLen) {
+  const [ cX, cY ] = [ Math.floor(tabLen/2), Math.floor(tabLen/2) ];
+  const newSqaureId = makeUnit(cX, cY);
+
+  if (tabVars[newSqaureId]%2==0) {
+    fillBlock(divPrefix, tabVars, newSqaureId);
+  }
+}
+function addTriangle(divPrefix, tabVars, tabLen) {
+  const [ cX, cY ] = [ Math.floor(tabLen/2), Math.floor(tabLen/2) ];
+  const newTriIds = [ makeUnit(cX, cY+1), makeUnit(cX, cY), makeUnit(cX-1, cY) ];
+
+  newTriIds.forEach(id => {
+    if (tabVars[id]%2==0) {
+      fillBlock(divPrefix, tabVars, id);
+    }
+  })
+}
+function addBox(divPrefix, tabVars, tabLen) {
+  const [ cX, cY ] = [ Math.floor(tabLen/2), Math.floor(tabLen/2) ];
+  const newBoxId = [ makeUnit(cX, cY), makeUnit(cX-1, cY), makeUnit(cX, cY+1), makeUnit(cX-1, cY+1) ];
+
+  newBoxId.forEach(el=> {
+    if (tabVars[el]%2==0) {
+      fillBlock(divPrefix, tabVars, el);
+    }
+  })
+}
+function addStick(divPrefix, tabVars, tabLen) {
+  const [ cX, cY ] = [ Math.floor(tabLen/2), Math.floor(tabLen/2) ];
+  const newTriIds = [ makeUnit(cX, cY), makeUnit(cX, cY-1), makeUnit(cX, cY+1) ];
+
+  newTriIds.forEach(id => {
+    if (tabVars[id]%2==0) {
+      fillBlock(divPrefix, tabVars, id);
+    }
+  })
 }

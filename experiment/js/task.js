@@ -1,5 +1,5 @@
 
-const mode = '';
+const mode = 'dev';
 const N = 7; // use an odd number to make "center" easy to locate
 
 
@@ -240,10 +240,7 @@ for (let i = 0; i < N; i++) {
 
 
 // Dev show all
-const devBtn = document.getElementById('dev-show-all');
-
 if (mode == 'dev') {
-  devBtn.style.display = 'none'
   showNext('instruction-01', 'block', 0);
   showNext('instruction-02', 'block', 0);
   showNext('instruction-03', 'block', 0);
