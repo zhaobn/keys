@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  /* background-color: #e0e0e0; */
+  font-size: 20px;
+}
+td {
+  background-color: #ffffff;
+}
+/* td:hover {
+  background-color: #D3D3D3;
+} */
+p {
+  margin: 30px 20px 0px;
+  font-size: 30px;
+}
+button {
+  margin: 1px;
+}
+/* .taskbox {
+  border: red solid 1px;
+} */
+.taskinnerbox {
+  /* border: green solid 1px; */
+  width: 390px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.taskin2box {
+  /* border: gray solid 1px; */
+  width: 360px;
+  height: 360px;
+}
+.button-wrapper {
+  height: 60px;
+}
+.key-demo-tabs {
+  table-layout:fixed;
+  height: 100%;
+  width: 100%;
+}
+#box-main {
+  display: flex;
+  justify-content: space-around;
+}
+#button-panel {
+  display: flex;
+  flex-direction: column;
+}
+#buttons-1, #buttons-2 {
+  display: flex;
+  justify-content: center;
+}
