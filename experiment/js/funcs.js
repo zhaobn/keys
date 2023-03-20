@@ -101,83 +101,99 @@ function growRight(divPrefix, tabVars, n, limit) {
 }
 function moveDown(divPrefix, tabVars, n, limit) {
   let curIds = getCurrentBlocks(tabVars);
-  const lastBlock = curIds.slice(-1)[0];
-  if (getX(lastBlock)+n < limit) {
-    let newIds = [];
-    curIds.forEach(el => newIds.push(makeUnit(getX(el)+n, getY(el))));
+  if (curIds.length > 0) {
+    const lastBlock = curIds.slice(-1)[0];
+    if (getX(lastBlock)+n < limit) {
+      let newIds = [];
+      curIds.forEach(el => newIds.push(makeUnit(getX(el)+n, getY(el))));
 
-    const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
-    const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
+      const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
+      const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
 
-    toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
-    toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+      toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
+      toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+    }
   }
 }
 function moveUp(divPrefix, tabVars, n) {
   let curIds = getCurrentBlocks(tabVars);
-  const firstBlock = curIds[0];
-  if (getX(firstBlock)-n >= 0) {
-    let newIds = [];
-    curIds.forEach(el => newIds.push(makeUnit(getX(el)-n, getY(el))));
+  if (curIds.length > 0) {
+    const firstBlock = curIds[0];
+    if (getX(firstBlock)-n >= 0) {
+      let newIds = [];
+      curIds.forEach(el => newIds.push(makeUnit(getX(el)-n, getY(el))));
 
-    const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
-    const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
+      const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
+      const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
 
-    toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
-    toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+      toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
+      toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+    }
+
   }
 }
 function moveRight(divPrefix, tabVars, limit) {
   let curIds = getCurrentBlocks(tabVars);
-  let curYs = curIds.map(el=>getY(el));
-  if (Math.max(...curYs)+1 < limit) {
-    let newIds = [];
-    curIds.forEach(el => newIds.push(makeUnit(getX(el), getY(el)+1)));
+  if (curIds.length > 0) {
+    let curYs = curIds.map(el=>getY(el));
+    if (Math.max(...curYs)+1 < limit) {
+      let newIds = [];
+      curIds.forEach(el => newIds.push(makeUnit(getX(el), getY(el)+1)));
 
-    const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
-    const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
+      const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
+      const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
 
-    toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
-    toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+      toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
+      toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+    }
   }
+
 }
 function moveLeft(divPrefix, tabVars) {
   let curIds = getCurrentBlocks(tabVars);
-  let curYs = curIds.map(el=>getY(el));
-  if (Math.min(...curYs)-1 >= 0) {
-    let newIds = [];
-    curIds.forEach(el => newIds.push(makeUnit(getX(el), getY(el)-1)));
+  if (curIds.length > 0) {
+    let curYs = curIds.map(el=>getY(el));
+    if (Math.min(...curYs)-1 >= 0) {
+      let newIds = [];
+      curIds.forEach(el => newIds.push(makeUnit(getX(el), getY(el)-1)));
 
-    const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
-    const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
+      const toRemove = curIds.filter(el => newIds.indexOf(el) < 0);
+      const toFill = newIds.filter(el => curIds.indexOf(el) < 0);
 
-    toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
-    toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+      toRemove.forEach(el=>clearBlock(divPrefix, tabVars, el));
+      toFill.forEach(el=>fillBlock(divPrefix, tabVars, el));
+    }
   }
 }
 function rotateRight(divPrefix, tabVars, limit) {
   const curIds = getCurrentBlocks(tabVars);
-  const centre = curIds.slice(-1)[0];
+  if (curIds.length > 0) {
+    const centre = curIds.slice(-1)[0];
 
-  let newCoords = [];
-  curIds.forEach(el => {
-    let [ relX, relY ] = [ getX(el)-getX(centre), getY(el)-getY(centre) ];
-    let [ newX, newY ] = [ getX(centre) + relY, getY(centre)-relX ];
-    newCoords.push(makeUnit(newX, newY));
-  })
+    let newCoords = [];
+    curIds.forEach(el => {
+      let [ relX, relY ] = [ getX(el)-getX(centre), getY(el)-getY(centre) ];
+      let [ newX, newY ] = [ getX(centre) + relY, getY(centre)-relX ];
+      newCoords.push(makeUnit(newX, newY));
+    })
 
-  // check limits
-  let isGood = 1;
-  let newXs = newCoords.map(el=>getX(el));
-  let newYs = newCoords.map(el=>getY(el));
-  isGood = isGood & (Math.min(...newXs)>=0) & (Math.max(...newXs)<limit);
-  isGood = isGood & (Math.min(...newYs)>=0) & (Math.max(...newYs)<limit);
+    // check limits
+    let isGood = 1;
+    let newXs = newCoords.map(el=>getX(el));
+    let newYs = newCoords.map(el=>getY(el));
+    isGood = isGood & (Math.min(...newXs)>=0) & (Math.max(...newXs)<limit);
+    isGood = isGood & (Math.min(...newYs)>=0) & (Math.max(...newYs)<limit);
 
-  if (isGood) {
-    curIds.forEach(el => clearBlock(divPrefix, tabVars, el));
-    newCoords.forEach(el => fillBlock(divPrefix, tabVars, el));
+    if (isGood) {
+      curIds.forEach(el => clearBlock(divPrefix, tabVars, el));
+      newCoords.forEach(el => fillBlock(divPrefix, tabVars, el));
+  }
   }
 }
+function flipLeftRight() {}
+function flipTopBottom() {}
+
+
 function removeLastRow(divPrefix, tabVars) {
   const curIds = getCurrentBlocks(tabVars);
   if (curIds.length > 0) {
