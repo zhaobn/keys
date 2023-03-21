@@ -36,135 +36,16 @@ p {
   width: 99%;
 }
 
-.task-div {
-  height: 600px;
-  width: 800px;
-  border: #404040 dotted 2px;
-  /* background-color: #D3D3D3; */
-  margin-top: 50px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.task-btn-cls {
-  display: flex;
-  justify-content: center;
+.frame-simple {
   padding: 20px;
-}
-.task-btn {
-  font-size: 25px;
-  background-color: #ffffff;
-  border: 0;
-  color: #808080;
-  padding: 5px;
-}
-.task-btn:hover{
-  background-color: #e0e0e0;
-  color: black;
-}
-.task-textbox {
-  margin: 8px 20px;
-  height: 100px;
-  width: 90%;
-  font-size: 25px;
+  border-radius: 5px;
+  background-color: #fafafa;
+  margin: 10px 0px;
+  font-size: 18px;
 }
 
-.key-maker-body {
-  height: 140px;
-  width: 200px;
-  background-color: silver;
-  display: flex;
-  flex-direction: column;
-  border: solid 2px black;
-  box-shadow: 5px 10px #888888;
 
-}
-.key-maker-btngroup{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 
-.key-maker-btn-1,
-.key-maker-btn-2,
-.key-maker-btn-3 {
-  height: 40px;
-  width: 60px;
-  background-color: aliceblue;
-  margin: 10px;
-  text-align: center;
-  font-size: 25px;
-
-}
-
-.key-maker-btngroup-bottom  {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-}
-.key-maker-btn-r {
-  height: 40px;
-  width: 80%;
-  background-color: lightblue;
-  margin: 10px;
-  text-align: center;
-  font-size: 22px;
-
-}
-
-.key-maker-demo {
-  border: solid 2px black;
-  height: 300px;
-  width: 300px;
-}
-.key-maker-wrapper {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.key-demo-tabs {
-  height: 100%;
-  width: 100%;
-}
-.drawing-wrapper {
-  display: flex;
-  margin: 0 40px;
-  justify-content: space-between;
-
-}
-.drawing-box {
-  width: 48%;
-
-}
-.drawing-box p {
-  font-size: 20px;
-  margin: 0px;
-}
-.task-textbox {
-  border: solid 1px black;
-  height: 250px;
-  width: 300;
-  margin: 5px 0;
-  font-size: 20px;
-}
-
-#task-grid-tab-c33 {
-  background-color: black;
-}
-
-#causal-btn-group {
-  height: 50px;
-  width: 98%;
-}
-.causal-btn {
-  height: 40px;
-  width: 50px;
-  margin-right: 5px;
-  margin-top: 0px;
-}
 .button-group-vc {
   display: flex;
   flex-direction: row;
@@ -213,4 +94,11 @@ p {
   height: 400px;
   overflow: scroll;
   padding: 0 0 20px 0;
+}
+#prolific_id_text {
+  font-size: 20px;
+  height: 25px;
+  width: 100%;
+  padding: 5px;
+  margin: 10px 0;
 }

@@ -1,5 +1,5 @@
 
-/* Div related functions */
+/* Div functions */
 function showNext(id, display = "flex", center = true) {
   let div = document.getElementById(id);
   div.style.display = display;
@@ -15,11 +15,39 @@ function hide(id) {
   let div = document.getElementById(id);
   div.style.display = "none";
 }
-function disableFormInputs (formId) {
-  const form = document.getElementById(formId);
-  const inputs = form.elements;
-  (Object.keys(inputs)).forEach((input) => inputs[input].disabled = true);
+function createCustomElement (type = 'div', className, id) {
+  let element = (["svg", "polygon"].indexOf(type) < 0)?
+    document.createElement(type):
+    document.createElementNS("http://www.w3.org/2000/svg", type);
+  if (className.length > 0) element.setAttribute("class", className);
+  element.setAttribute("id", id);
+  return element;
 }
+function createDivWithStyle (className = "div", id = "", style = "") {
+  let element = createCustomElement('div', className, id);
+  setStyle(element, style);
+  return element;
+}
+function createText(h = "h1", text = 'hello') {
+  let element = document.createElement(h);
+  let tx = document.createTextNode(text);
+  element.append(tx);
+  return(element)
+}
+function setAttributes(el, attrs) {
+  for(var key in attrs) {
+    el.setAttribute(key, attrs[key]);
+  }
+}
+function createBtn (btnId, text = "Button", on = true, className = "task-button") {
+  let btn = createCustomElement("button", className, btnId);
+  btn.disabled = !on;
+  (text.length > 0) ? btn.append(document.createTextNode(text)): null;
+  return(btn)
+}
+
+
+/* Form functions */
 function isFilled (formID) {
   let notFilled = false;
   const nulls = [ '', '--', '', '--', '', '--' ];
@@ -31,6 +59,26 @@ function isFilled (formID) {
   });
   return (!notFilled)
 }
+function disableFormInputs (formId) {
+  const form = document.getElementById(formId);
+  const inputs = form.elements;
+  (Object.keys(inputs)).forEach((input) => inputs[input].disabled = true);
+}
+function findAllIndex(element, array) {
+  let indices = [];
+  let idx = array.indexOf(element);
+  while (idx != -1) {
+    indices.push(idx);
+    idx = array.indexOf(element, idx + 1);
+  }
+  return(indices);
+}
+
+
+
+
+
+
 
 /* Grid generator */
 function makeGridVars(n, showCenter = true) {
@@ -256,4 +304,61 @@ function addStick(divPrefix, tabVars, tabLen) {
       fillBlock(divPrefix, tabVars, id);
     }
   })
+}
+
+
+
+
+
+
+
+/* Bebrief form */
+function removeSpecial (text) {
+  text = text.replace(/[&\/\\#,$~%"\[\]{}@^_|`']/gi, '');
+  text = text.replace(/(\r\n|\n|\r|\t)/gm, " ")
+  return text
+}
+function showPostCheckPage (isPass) {
+  const pageDiv = isPass? 'pass' : 'retry';
+  document.getElementById('check-btn').style.display = 'none';
+  document.getElementById(pageDiv).style.display = 'flex';
+}
+function showCompletion(code, nCorrect) {
+  hide("debrief");
+  showNext("completed", 'block');
+  let bonusVal = nCorrect * 1.0;
+  bonusVal = Math.round(bonusVal*100)/100;
+  let t = document.createTextNode(code);
+  let co = createText('p', `You completed ${nCorrect} tasks successfully!
+  You will get ${bonusVal} pounds bonus on top of your base pay.`)
+  // let returnLink = createCustomElement('p', '', '')
+  // returnLink.innerHTML = `Click <a href='https://app.prolific.co/submissions/complete?cc=${code}'>here</a> to redirect to Prolific.`
+  document.getElementById('completion-code').append(t);
+  document.getElementById('completed').append(co);
+  // document.getElementById('completed').append(returnLink);
+}
+function generateToken (length) {
+  let tokens = '';
+  let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  for (let i = 0; i < length; i ++) {
+      tokens += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+  return tokens;
+}
+function formatDates (date, option = 'date') {
+  let year = date.getFullYear();
+  let month = String(date.getMonth() + 1).padStart(2, '0');
+  let day = String(date.getDate() + 1).padStart(2, '0');
+  let hour = String(date.getHours()+ 1).padStart(2, '0');
+  let min = String(date.getMinutes() + 1).padStart(2, '0');
+  let sec = String(date.getSeconds() + 1).padStart(2, '0');
+  dateParts = (option === 'date') ? [ year, month, day ] : [ hour, min, sec ];
+  return dateParts.join('_');
+}
+function download(content, fileName, contentType) {
+  var a = document.createElement("a");
+  var file = new Blob([content], {type: contentType});
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
 }
