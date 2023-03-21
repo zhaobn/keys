@@ -1,5 +1,5 @@
 
-const mode = '' // '', 'dev', 'live'
+const mode = 'dev' // '', 'dev', 'live'
 
 /** Pick a condition */
 const conds_for_exp = ['unit', 'stick', 'corner'];
@@ -37,12 +37,34 @@ if (mode == '') {
 
 
 /** Instructions */
+const introNextBtn_1 = document.getElementById('intro-next-btn-1');
+const skipIntroBtn = document.getElementById('dev-skip-intro');
+
+skipIntroBtn.onclick = () => {
+  hide('instruction');
+  showNext('training', 'block');
+}
+introNextBtn_1.onclick = () => {
+  hide('instruction');
+  showNext('training', 'block');
+}
 
 
 
 
 
 /** Trainings */
+const trainingNextBtn_1 = document.getElementById('training-next-btn-1');
+const skipTrainingBtn = document.getElementById('dev-skip-training');
+
+skipTrainingBtn.onclick = () => {
+  hide('training');
+  showNext('task', 'block');
+}
+trainingNextBtn_1.onclick = () => {
+  hide('training');
+  showNext('task', 'block');
+}
 
 
 
@@ -51,6 +73,20 @@ if (mode == '') {
 
 /** Tasks */
 let nCorrect = 0;
+
+const taskNextBtn_1 = document.getElementById('task-next-btn-1');
+const skipTaskBtn = document.getElementById('dev-skip-task');
+
+taskNextBtn_1.onclick = () => {
+  hide('task');
+  showNext('debrief', 'block');
+}
+skipTaskBtn.onclick = () => {
+  hide('task');
+  showNext('debrief', 'block');
+}
+
+
 
 
 
