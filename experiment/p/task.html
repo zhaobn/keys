@@ -98,8 +98,13 @@
 
     <div id="instruction" class="base" style="display: none;">
       <h1>Instructions</h1>
-      <div id="training-0" class="frame-simple">
-        <p>tasks</p>
+      <div id="instruction-0" class="frame-simple">
+        <p>Cool. Now your tasks, six in total.</p>
+        <p>In each task, you will see a target shape, and you need to make this shape by pressing the buttons.</p>
+        <p>Each button press costs a golden coin.</p>
+        <p>Moving things around, i.e. arrow keys or a/w/s/d keys do not cost any golden coin.</p>
+        <p>You have limited golden coins for some tasks - shown on the top of your screen, so think carefully before pressing anything.</p>
+        <p>You get 0.25 pounds for each task you solved successfully, adding to your base pay.</p>
       </div>
       <div class='button-group-vc'>
         <button class='big-button' id='intro-next-btn'>Next</button>
@@ -110,20 +115,52 @@
 
 
     <div id="instruction-quiz" class="base" style="display: none;">
-      <h1>Quiz</h1>
-      <div id="training-0" class="frame-simple">
-        <p>Instruction quiz</p>
+      <h1>Some quick checks</h1>
+      <div class="frame-simple">
+        <form id='intro-quiz-form'>
+          <ol>
+            <li>Your task is to make the target shape. </li>
+            <p class="form-p">
+              <input type="radio" name="intro1">True&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="intro1">False
+            </p>
+            <li>You can press the buttons as many times as you want. </li>
+            <p class="form-p">
+              <input type="radio" name="intro2">True&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="intro2">False
+            </p>
+            <li>One use of an arrow key costs a golden coin. </li>
+            <p class="form-p">
+              <input type="radio" name="intro3">True&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="intro3">False
+            </p>
+            <li>You earn a bonus for each task you solve successfully. </li>
+            <p class="form-p">
+              <input type="radio" name="intro4">True&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="intro4">False
+            </p>
+          </ol>
+        </form>
       </div>
       <div class='button-group-vc'>
-        <button class='big-button' id='intro-quiz-next-btn'>Next</button>
+        <button class='big-button' id='intro-quiz-check-btn' disabled>Check</button>
       </div>
+      <div id="intro-retry" style="display: none;">
+        <h3>Oooops, please read the instructions carefully and try again.</h3>
+        <div class='button-group-vc'>
+          <button class='big-button' id='intro-retry-btn'>&lt;&lt;</button>
+        </div>
+      </div>
+      <!-- <div class='button-group-vc'>
+        <button class='big-button' id='intro-quiz-next-btn'>Next</button>
+      </div> -->
     </div>
 
 
 
     <div id="task" class="base" style="display: none;">
       <div id="task-0" class="frame-simple">
-        <p>Tests</p>
+        <p>Tasks</p>
       </div>
       <div class='button-group-vc'>
         <button class='big-button' id='task-next-btn-1'>Next</button>

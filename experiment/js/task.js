@@ -17,8 +17,8 @@ let subjectData = {};
 if (mode == '') {
   subjectData['prolific_id'] = 'NA';
   hide('prolific_id');
-  // showNext('training', 'block');
-  showNext('training-quiz', 'block');
+  showNext('training', 'block');
+  // showNext('training-quiz', 'block');
   // showNext('instruction', 'block');
   // showNext('instruction-quiz', 'block');
   // showNext('task', 'block');
@@ -49,8 +49,6 @@ trainingNextBtn.onclick = () => {
 
 
 
-
-
 /** Training quiz */
 const trainingQuizForm = document.getElementById('training-quiz-form');
 const trainingRetryBtn = document.getElementById('training-retry-btn');
@@ -58,7 +56,6 @@ const trainingQuizCheckBtn = document.getElementById('training-quiz-check-btn');
 
 const trainingChecks = [ 'check1', 'check2', 'check3', 'check4', 'check5' ];
 const trainingAnswers = [ 'dax', 'zip', 'wif', 'right90', 'yes' ];
-
 
 trainingQuizCheckBtn.onclick = () => {
   trainingQuizCheckBtn.style.display = 'none';
@@ -88,9 +85,6 @@ trainingQuizForm.onchange = () => compIsFilled(trainingChecks.length) ? training
 
 
 
-
-
-
 /** Instructions */
 const introNextBtn = document.getElementById('intro-next-btn');
 introNextBtn.onclick = () => {
@@ -99,11 +93,40 @@ introNextBtn.onclick = () => {
 }
 
 
-const introQuizNexBtn = document.getElementById('intro-quiz-next-btn');
-introQuizNexBtn.onclick = () => {
-  hide('instruction-quiz');
-  showNext('task', 'block');
+
+
+/** Instruction quiz */
+const introQuizForm = document.getElementById('intro-quiz-form');
+const introRetryBtn = document.getElementById('intro-retry-btn');
+const introQuizCheckBtn = document.getElementById('intro-quiz-check-btn');
+
+const introChecks = [ 'intro1', 'intro2', 'intro3', 'intro4' ];
+const introAnswers = [ true, false, false, true ];
+
+introQuizCheckBtn.onclick = () => {
+  introQuizCheckBtn.style.display = 'none';
+  let inputs = [];
+  introChecks.map(check => {
+    const vals = document.getElementsByName(check);
+    inputs.push(vals[0].checked);
+  });
+  const pass = (inputs.join('') === introAnswers.join(''));
+  if (pass) {
+    hide('instruction-quiz');
+    showNext('task', 'block');
+  } else {
+    showNext('intro-retry', 'block');
+  }
 }
+
+introRetryBtn.onclick = () => {
+  hide("intro-retry");
+  hide("instruction-quiz");
+  showNext("instruction", "block");
+  introQuizCheckBtn.style.display = 'flex';
+};
+
+introQuizForm.onchange = () => compIsFilled(introAnswers.length + trainingAnswers.length) ? introQuizCheckBtn.disabled = false : null;
 
 
 
