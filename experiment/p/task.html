@@ -20,30 +20,104 @@
 
 
 
+    <div id="training" class="base" style="display: none;">
+      <h1>Instructions</h1>
+      <div class="frame-simple">
+        <p>Here are four buttons.</p>
+        <p>Each button can do something.</p>
+        <p>Now, play with the buttons and see what they can do.</p>
+        <p>You can use arrows keys on your keyboard, or A (left), W (up), S (down), D (right) keys on your keyboard to move things around.</p>
+      </div>
+      <div class='button-group-vc'>
+        <button class='big-button' id='training-next-btn'>Next</button>
+      </div>
+    </div>
+
+
+
+
+    <div id="training-quiz" class="base" style="display: none;">
+      <h1>Check your understanding</h1>
+      <div id="instruction-quiz-text" class="frame-simple">
+        <form id='training-quiz-form'>
+          <ol>
+            <li>Which button makes this shape?</li>
+            <p class="form-p">
+              <input type="radio" name="check1" value="dax">Dax&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check1" value="zip">Zip&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check1" value="wif">Wif&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check1" value="kiki">Kiki
+            </p>
+            <li>Which button makes this shape?</li>
+            <p class="form-p">
+              <input type="radio" name="check2" value="dax">Dax&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check2" value="zip">Zip&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check2" value="wif">Wif&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check2" value="kiki">Kiki
+            </p>
+            <li>Which button makes this shape?</li>
+            <p class="form-p">
+              <input type="radio" name="check3" value="dax">Dax&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check3" value="zip">Zip&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check3" value="wif">Wif&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check3" value="kiki">Kiki
+            </p>
+            <li>What does the button “Kiki” do?</li>
+            <p class="form-p">
+              <input type="radio" name="check4" value="left90">Rotate left 90 degrees&nbsp;
+              <input type="radio" name="check4" value="right90">Rotate right 90 degrees
+              <br>
+              <input type="radio" name="check4" value="fliplr">Flip leftside-right&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check4" value="fliptd">Flip upside-down
+            </p>
+            <li>Can you move things with arrow keys or a/w/s/d keys?</li>
+            <p class="form-p">
+              <input type="radio" name="check5" value="yes">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="check5" value="no">No
+            </p>
+          </ol>
+        </form>
+      </div>
+      <div class='button-group-vc'>
+        <button class='big-button' id='training-quiz-check-btn' disabled>Check</button>
+      </div>
+      <div id="training-retry" style="display: none;">
+        <h3>Oooops, please test those buttons carefully and try again.</h3>
+        <div class='button-group-vc'>
+          <button class='big-button' id='training-retry-btn'>&lt;&lt;</button>
+        </div>
+      </div>
+      <!-- <div class='button-group-vc'>
+        <button class='big-button' id='training-quiz-next-btn'>Next</button>
+      </div> -->
+    </div>
+
+
+
+
+
     <div id="instruction" class="base" style="display: none;">
       <h1>Instructions</h1>
-      <div id="instruction-text" class="frame-simple">
-        <p>Here are some basic instruction</p>
-      </div>
-      <div class='button-group-vc'>
-        <button class='big-button' id='intro-next-btn-1'>Next</button>
-        <button class='big-button' id='dev-skip-intro'>Dev skip</button>
-      </div>
-    </div>
-
-
-
-
-    <div id="training" class="base" style="display: none;">
       <div id="training-0" class="frame-simple">
-        <p>Training phase</p>
+        <p>tasks</p>
       </div>
       <div class='button-group-vc'>
-        <button class='big-button' id='training-next-btn-1'>Next</button>
-        <button class='big-button' id='dev-skip-training'>Dev skip</button>
+        <button class='big-button' id='intro-next-btn'>Next</button>
       </div>
     </div>
 
+
+
+
+    <div id="instruction-quiz" class="base" style="display: none;">
+      <h1>Quiz</h1>
+      <div id="training-0" class="frame-simple">
+        <p>Instruction quiz</p>
+      </div>
+      <div class='button-group-vc'>
+        <button class='big-button' id='intro-quiz-next-btn'>Next</button>
+      </div>
+    </div>
 
 
 
@@ -53,7 +127,6 @@
       </div>
       <div class='button-group-vc'>
         <button class='big-button' id='task-next-btn-1'>Next</button>
-        <button class='big-button' id='dev-skip-task'>Dev skip</button>
       </div>
     </div>
 

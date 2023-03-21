@@ -1,5 +1,5 @@
 
-const mode = 'dev' // '', 'dev', 'live'
+const mode = '' // '', 'dev', 'live'
 
 /** Pick a condition */
 const conds_for_exp = ['unit', 'stick', 'corner'];
@@ -17,10 +17,12 @@ let subjectData = {};
 if (mode == '') {
   subjectData['prolific_id'] = 'NA';
   hide('prolific_id');
-  showNext('instruction', 'block');
-  showNext('training', 'block');
-  showNext('test', 'block');
-  showNext('debrief', 'block');
+  // showNext('training', 'block');
+  showNext('training-quiz', 'block');
+  // showNext('instruction', 'block');
+  // showNext('instruction-quiz', 'block');
+  // showNext('task', 'block');
+  // showNext('debrief', 'block');
   // showCompletion('XXXX', 0);
 
 } else {
@@ -36,36 +38,72 @@ if (mode == '') {
 
 
 
-/** Instructions */
-const introNextBtn_1 = document.getElementById('intro-next-btn-1');
-const skipIntroBtn = document.getElementById('dev-skip-intro');
-
-skipIntroBtn.onclick = () => {
-  hide('instruction');
-  showNext('training', 'block');
-}
-introNextBtn_1.onclick = () => {
-  hide('instruction');
-  showNext('training', 'block');
-}
-
-
-
-
 
 /** Trainings */
-const trainingNextBtn_1 = document.getElementById('training-next-btn-1');
-const skipTrainingBtn = document.getElementById('dev-skip-training');
-
-skipTrainingBtn.onclick = () => {
+const trainingNextBtn = document.getElementById('training-next-btn');
+trainingNextBtn.onclick = () => {
   hide('training');
-  showNext('task', 'block');
-}
-trainingNextBtn_1.onclick = () => {
-  hide('training');
-  showNext('task', 'block');
+  showNext('training-quiz', 'block');
 }
 
+
+
+
+
+
+/** Training quiz */
+const trainingQuizForm = document.getElementById('training-quiz-form');
+const trainingRetryBtn = document.getElementById('training-retry-btn');
+const trainingQuizCheckBtn = document.getElementById('training-quiz-check-btn');
+
+const trainingChecks = [ 'check1', 'check2', 'check3', 'check4', 'check5' ];
+const trainingAnswers = [ 'dax', 'zip', 'wif', 'right90', 'yes' ];
+
+
+trainingQuizCheckBtn.onclick = () => {
+  trainingQuizCheckBtn.style.display = 'none';
+  let inputs = [];
+  trainingChecks.map(check => {
+    const vals = document.getElementsByName(check);
+    vals.forEach(v => { v.checked? inputs.push(v.value): null;});
+  });
+  const pass = (inputs.join('') === trainingAnswers.join(''));
+  if (pass) {
+    hide('training-quiz');
+    showNext('instruction', 'block');
+  } else {
+    showNext('training-retry', 'block');
+  }
+}
+
+trainingRetryBtn.onclick = () => {
+  hide("training-retry");
+  hide("training-quiz");
+  showNext("training", "block");
+  trainingQuizCheckBtn.style.display = 'flex';
+};
+
+trainingQuizForm.onchange = () => compIsFilled(trainingChecks.length) ? trainingQuizCheckBtn.disabled = false : null;
+
+
+
+
+
+
+
+/** Instructions */
+const introNextBtn = document.getElementById('intro-next-btn');
+introNextBtn.onclick = () => {
+  hide('instruction');
+  showNext('instruction-quiz', 'block');
+}
+
+
+const introQuizNexBtn = document.getElementById('intro-quiz-next-btn');
+introQuizNexBtn.onclick = () => {
+  hide('instruction-quiz');
+  showNext('task', 'block');
+}
 
 
 
@@ -75,13 +113,7 @@ trainingNextBtn_1.onclick = () => {
 let nCorrect = 0;
 
 const taskNextBtn_1 = document.getElementById('task-next-btn-1');
-const skipTaskBtn = document.getElementById('dev-skip-task');
-
 taskNextBtn_1.onclick = () => {
-  hide('task');
-  showNext('debrief', 'block');
-}
-skipTaskBtn.onclick = () => {
   hide('task');
   showNext('debrief', 'block');
 }

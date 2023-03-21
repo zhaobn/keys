@@ -10,6 +10,12 @@ p {
   margin: 30px 20px 0px;
   font-size: 30px;
 }
+form {
+  font-size: 30px;
+}
+input[type="text"] {
+  font-size: 10px;
+}
 #consent-info p,
 #debrief p {
   font-size: 18px;
@@ -31,6 +37,7 @@ p {
   font-size: 18px;
   border: #404040 dotted 2px;
 }
+
 .frame textarea {
   height: 100px;
   width: 99%;
@@ -44,8 +51,10 @@ p {
   font-size: 18px;
 }
 
-
-
+.form-p {
+  margin: 5px 0px 10px 0px;
+  font-size: 27px;
+}
 .button-group-vc {
   display: flex;
   flex-direction: row;

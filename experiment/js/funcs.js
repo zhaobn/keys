@@ -73,7 +73,14 @@ function findAllIndex(element, array) {
   }
   return(indices);
 }
-
+function compIsFilled (nChecks) {
+  let radios = document.getElementsByTagName('input');
+  let checked = 0;
+  for (let i = 0; i < radios.length; i++) {
+      checked += radios[i].checked;
+  }
+  return (checked == nChecks)
+}
 
 
 
