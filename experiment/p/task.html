@@ -23,13 +23,24 @@
     <div id="training" class="base" style="display: none;">
       <h1>Instructions</h1>
       <div class="frame-simple">
-        <p>Here are four buttons.</p>
-        <p>Each button can do something.</p>
-        <p>Now, play with the buttons and see what they can do.</p>
-        <p>You can use arrows keys on your keyboard, or A (left), W (up), S (down), D (right) keys on your keyboard to move things around.</p>
+        <p>Play with the buttons and see what they can do.</p>
+        <div class="taskbox">
+          <div class="taskinnerbox">
+            <table class="demo-tabs" id="demo-grid"></table>
+          </div>
+          <div class="key-button-group">
+            <button class="key-button" id="playgd-dax">Dax</button>
+            <button class="key-button" id='playgd-wif'>Wif</button>
+            <button class="key-button" id='playgd-zip'>Zip</button>
+            <button class="key-button" id='playgd-kiki'>Kiki</button>
+            <!-- <button class="key-button" id='playgd-clear'>Clear all</button> -->
+          </div>
+        </div>
+        <p>You can use arrows keys on your keyboard (&#8592;,&#8593;,&#8594;, and &#8595;), or A (left), W (up), S (down), D (right) keys on your keyboard to move things around.</p>
       </div>
       <div class='button-group-vc'>
-        <button class='big-button' id='training-next-btn'>Next</button>
+        <button class='big-button' id='training-clear-btn'>Clear all</button>
+        <button class='big-button' id='training-next-btn' disabled>Next</button>
       </div>
     </div>
 

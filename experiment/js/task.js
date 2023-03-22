@@ -40,11 +40,67 @@ if (mode == '') {
 
 
 /** Trainings */
+
+// Draw grid
+const N = 7;
+let demoGrid = makeGridVars(N, showCenter=0);
+let demoGridDiv = document.getElementById('demo-grid');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = demoGridDiv.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `demo-grid-c` + i.toString() + '-' + j.toString();
+    tcell.style.border = '#ffffff solid 1px';
+  }
+}
+let centerCellId = makeUnit(Math.floor(N/2),Math.floor(N/2));
+document.getElementById(`demo-grid-${centerCellId}`).style.borderColor='red';
+
+// Buttton functionalities
+const demoUniBtn = document.getElementById('playgd-dax');
+const demoStickBtn = document.getElementById('playgd-wif');
+const demoTriBtn = document.getElementById('playgd-zip');
+const demoRotateBtn = document.getElementById('playgd-kiki');
+const demoClearBtn = document.getElementById('training-clear-btn');
+
+demoUniBtn.onclick = () => addSquare('demo-grid', demoGrid, N);
+demoStickBtn.onclick = () => addStick('demo-grid', demoGrid, N);
+demoTriBtn.onclick = () => addTriangle('demo-grid', demoGrid, N);
+demoRotateBtn.onclick = () => rotateRightCenter('demo-grid', demoGrid, N);
+demoClearBtn.onclick = () => resetGrid('demo-grid', demoGrid, N, false);
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+  e = e || window.event;
+  switch(e.key) {
+    case 'w':
+    case 'ArrowUp':
+      moveUpInf('demo-grid', demoGrid, 1, N);
+      break;
+    case 's':
+    case 'ArrowDown':
+      moveDownInf('demo-grid', demoGrid, 1, N);
+      break;
+    case 'a':
+    case 'ArrowLeft':
+      moveLeftInf('demo-grid', demoGrid, 1, N);
+      break;
+    case 'd':
+    case 'ArrowRight':
+      moveRightInf('demo-grid', demoGrid, 1, N);
+      break;
+  }
+}
+
+// Enable the Next button only after sufficient play:
+//     Play each button and move things at least once
 const trainingNextBtn = document.getElementById('training-next-btn');
 trainingNextBtn.onclick = () => {
   hide('training');
   showNext('training-quiz', 'block');
 }
+
 
 
 

@@ -3,30 +3,35 @@ body {
   /* background-color: #e0e0e0; */
   font-size: 20px;
 }
-td {
-  background-color: #ffffff;
-}
 p {
-  margin: 30px 20px 0px;
-  font-size: 30px;
+  margin: 10px 20px 24px 20px;
+  font-size: 24px;
 }
 form {
-  font-size: 30px;
+  font-size: 24px;
 }
-input[type="text"] {
-  font-size: 10px;
-}
-#consent-info p,
-#debrief p {
-  font-size: 18px;
-  margin: 20px 0;
+td {
+  background-color: #ffffff;
 }
 /* td:hover {
   background-color: #D3D3D3;
 } */
+
+
 .base {
-  width:800px;
+  width:720px;
   margin:0 auto;
+}
+
+.big-button {
+  font-size: 18px;
+  padding: 10px 30px;
+}
+
+.button-group-vc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .frame {
@@ -44,21 +49,52 @@ input[type="text"] {
 }
 
 .frame-simple {
-  padding: 20px;
-  border-radius: 5px;
+  padding: 2px;
   background-color: #fafafa;
-  margin: 10px 0px;
-  font-size: 18px;
+  margin: 0 0 10px 0;
 }
 
 .form-p {
-  margin: 5px 0px 10px 0px;
-  font-size: 27px;
+  margin: 5px 0px 15px 0px;
+  /* font-size: 20px; */
 }
-.button-group-vc {
+.demo-tabs {
+  table-layout:fixed;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+.key-button {
+  font-size: 20px;
+  padding: 4px;
+  margin: 10px;
+  width: 60px;
+  background-color: gold;
+}
+.key-button:hover {
+  background-color: yellow;
+  /* color: white; */
+}
+
+.key-button-group {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: top;
+}
+
+.taskbox {
+  /* border: #116466 solid 2px; */
+  display: flex;
+  width: 320px;
+  margin: 0 0 20px 60px;
+  justify-content: flex-start;
+}
+
+.taskinnerbox {
+  border:black solid 2px;
+  width: 240px;
+  height: 240px;
 }
 
 .task-button, .big-button {
@@ -83,26 +119,27 @@ input[type="text"] {
   opacity: 0.5;
   cursor: not-allowed;
 }
-.big-button {
-  font-size: 18px;
-  padding: 10px 30px;
-}
+
 #collect-input-textarea {
   margin: 5px;
   height: 200px;
   width: 300px;
   font-size: 20px;
 }
-
-#task-main-right-top,
-#task-main-right-bottom {
-  flex-direction: column;
-  width: 100%;
-}
 #consent-info {
   height: 400px;
   overflow: scroll;
   padding: 0 0 20px 0;
+}
+#consent-info p,
+#debrief p {
+  font-size: 18px;
+  margin: 20px 0;
+}
+#task-main-right-top,
+#task-main-right-bottom {
+  flex-direction: column;
+  width: 100%;
 }
 #prolific_id_text {
   font-size: 20px;
