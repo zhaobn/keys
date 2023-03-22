@@ -17,8 +17,8 @@ let subjectData = {};
 if (mode == '') {
   subjectData['prolific_id'] = 'NA';
   hide('prolific_id');
-  showNext('training', 'block');
-  // showNext('training-quiz', 'block');
+  // showNext('training', 'block');
+  showNext('training-quiz', 'block');
   // showNext('instruction', 'block');
   // showNext('instruction-quiz', 'block');
   // showNext('task', 'block');
@@ -119,6 +119,27 @@ function checkKey(e) {
 
 
 /** Training quiz */
+// Draw shapes in quiz
+let unitDraw = document.getElementById('canvas-unit').getContext('2d');
+unitDraw.fillRect(0,0,30,30);
+let stickDraw = document.getElementById('canvas-stick').getContext('2d');
+stickDraw.fillRect(0,0,90,30);
+stickDraw.strokeStyle = "#ffffff";
+stickDraw.lineWidth = 2;
+stickDraw.strokeRect(0,0,30,30);
+stickDraw.strokeRect(30,0,30,30);
+stickDraw.strokeRect(60,0,30,30);
+let triaDraw = document.getElementById('canvas-triangle').getContext('2d');
+triaDraw.fillRect(0,0,30,60);
+triaDraw.fillRect(30,30,30,60);
+triaDraw.strokeStyle = "#ffffff";
+triaDraw.lineWidth = 2;
+triaDraw.strokeRect(0,0,30,30);
+triaDraw.strokeRect(0,30,30,30);
+triaDraw.strokeRect(30,30,30,30);
+
+
+// Check quiz answers
 const trainingQuizForm = document.getElementById('training-quiz-form');
 const trainingRetryBtn = document.getElementById('training-retry-btn');
 const trainingQuizCheckBtn = document.getElementById('training-quiz-check-btn');
