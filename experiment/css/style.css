@@ -34,6 +34,15 @@ td {
   justify-content: space-around;
 }
 
+.demo-tabs {
+  table-layout:fixed;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+.dev {
+  border: #116466 solid 1px;
+}
 .frame {
   padding: 20px;
   border-radius: 5px;
@@ -58,12 +67,7 @@ td {
   margin: 10px 0px 30px 0px;
   /* font-size: 20px; */
 }
-.demo-tabs {
-  table-layout:fixed;
-  height: 100%;
-  width: 100%;
-  background-color: white;
-}
+
 .key-button {
   font-size: 20px;
   padding: 4px;
@@ -86,16 +90,28 @@ td {
 .taskbox {
   /* border: #116466 solid 2px; */
   display: flex;
-  width: 320px;
+  width: 360px;
   margin: 0 0 20px 60px;
   justify-content: flex-start;
 }
-
+.taskgroup,
+.targetgroup {
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 .taskinnerbox {
   border:black solid 2px;
   width: 240px;
   height: 240px;
 }
+
+.taskwrapper {
+  display: flex;
+  flex-direction: row;
+}
+
 
 .task-button, .big-button {
   border: #e0e0e0 1px solid;
@@ -118,6 +134,12 @@ td {
 .big-button:disabled:hover {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.target-tabs {
+  /* border: #116466 solid 1px; */
+  width: 240px;
+  height: 240px;
 }
 
 #collect-input-textarea {

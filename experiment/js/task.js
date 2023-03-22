@@ -20,8 +20,8 @@ if (mode == '') {
   // showNext('training', 'block');
   // showNext('training-quiz', 'block');
   // showNext('instruction', 'block');
-  showNext('instruction-quiz', 'block');
-  // showNext('task', 'block');
+  // showNext('instruction-quiz', 'block');
+  showNext('task', 'block');
   // showNext('debrief', 'block');
   // showCompletion('XXXX', 0);
 
@@ -230,6 +230,20 @@ introQuizForm.onchange = () => compIsFilled(introAnswers.length + trainingAnswer
 
 /** Tasks */
 let nCorrect = 0;
+
+let targetGrid = makeGridVars(N, showCenter=0);
+let targetGrid01div = document.getElementById('target-1-grid');
+for (let i = 0; i < N; i++) {
+  let tcCodeList = targetGrid01div.insertRow();
+  for (let j = 0; j < N; j++) {
+    let tcell = tcCodeList.insertCell();
+    tcell.id = `target-1-c` + i.toString() + '-' + j.toString();
+    // tcell.style.border = '#ffffff solid 1px';
+    tcell.style.backgroundColor = 'red';
+  }
+}
+
+
 
 const taskNextBtn_1 = document.getElementById('task-next-btn-1');
 taskNextBtn_1.onclick = () => {
