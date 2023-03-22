@@ -17,8 +17,8 @@ let subjectData = {};
 if (mode == '') {
   subjectData['prolific_id'] = 'NA';
   hide('prolific_id');
-  // showNext('training', 'block');
-  showNext('training-quiz', 'block');
+  showNext('training', 'block');
+  // showNext('training-quiz', 'block');
   // showNext('instruction', 'block');
   // showNext('instruction-quiz', 'block');
   // showNext('task', 'block');
