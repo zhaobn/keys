@@ -17,10 +17,10 @@ let subjectData = {};
 if (mode == '') {
   subjectData['prolific_id'] = 'NA';
   hide('prolific_id');
-  showNext('training', 'block');
+  // showNext('training', 'block');
   // showNext('training-quiz', 'block');
   // showNext('instruction', 'block');
-  // showNext('instruction-quiz', 'block');
+  showNext('instruction-quiz', 'block');
   // showNext('task', 'block');
   // showNext('debrief', 'block');
   // showCompletion('XXXX', 0);
@@ -188,6 +188,7 @@ introNextBtn.onclick = () => {
 /** Instruction quiz */
 const introQuizForm = document.getElementById('intro-quiz-form');
 const introRetryBtn = document.getElementById('intro-retry-btn');
+const introPassBtn = document.getElementById('intro-pass-btn');
 const introQuizCheckBtn = document.getElementById('intro-quiz-check-btn');
 
 const introChecks = [ 'intro1', 'intro2', 'intro3', 'intro4' ];
@@ -202,8 +203,8 @@ introQuizCheckBtn.onclick = () => {
   });
   const pass = (inputs.join('') === introAnswers.join(''));
   if (pass) {
-    hide('instruction-quiz');
-    showNext('task', 'block');
+    hide('intro-quiz-check-btn');
+    showNext('intro-pass', 'block');
   } else {
     showNext('intro-retry', 'block');
   }
@@ -215,8 +216,13 @@ introRetryBtn.onclick = () => {
   showNext("instruction", "block");
   introQuizCheckBtn.style.display = 'flex';
 };
+introPassBtn.onclick = () => {
+  hide("instruction-quiz");
+  showNext('task', 'block');
+}
 
 introQuizForm.onchange = () => compIsFilled(introAnswers.length + trainingAnswers.length) ? introQuizCheckBtn.disabled = false : null;
+// introQuizForm.onchange = () => compIsFilled(introAnswers.length) ? introQuizCheckBtn.disabled = false : null;
 
 
 
