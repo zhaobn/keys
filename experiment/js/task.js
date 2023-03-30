@@ -3,7 +3,7 @@ const mode = '' // '', 'dev', 'live'
 
 /** Pick a condition */
 const conds_for_exp = ['unit', 'stick', 'corner'];
-const cond = 'unit'; // conds_for_exp[Math.floor(Math.random() * conds_for_exp.length)];
+let cond = 'unit'; // conds_for_exp[Math.floor(Math.random() * conds_for_exp.length)];
 (mode===''|mode==='dev')? console.log(`${mode} mode; condition ${cond}.`) : null;
 
 const start_time = Date.now();
@@ -31,7 +31,7 @@ if (mode == '') {
   prolificIdBtn.onclick = () => {
     subjectData['prolific_id'] = prolificText.value;
     hide('prolific_id');
-    showNext('instruction', 'block');
+    showNext('training', 'block');
   }
 
 }
@@ -92,24 +92,56 @@ function checkKey(e) {
       moveUpInf('demo-grid', demoGrid, 1, N);
       demoTraces['direc'] += 1;
       trainProceed(demoTraces);
+
+      moveUpInf('task-1', taskGridVars['task_1'], 1, N);
+      moveUpInf('task-2', taskGridVars['task_2'], 1, N);
+      moveUpInf('task-3', taskGridVars['task_3'], 1, N);
+      moveUpInf('task-4', taskGridVars['task_4'], 1, N);
+      moveUpInf('task-5', taskGridVars['task_5'], 1, N);
+      moveUpInf('task-6', taskGridVars['task_6'], 1, N);
+
       break;
     case 's':
     case 'ArrowDown':
       moveDownInf('demo-grid', demoGrid, 1, N);
       demoTraces['direc'] += 1;
       trainProceed(demoTraces);
+
+      moveDownInf('task-1', taskGridVars['task_1'], 1, N);
+      moveDownInf('task-2', taskGridVars['task_2'], 1, N);
+      moveDownInf('task-3', taskGridVars['task_3'], 1, N);
+      moveDownInf('task-4', taskGridVars['task_4'], 1, N);
+      moveDownInf('task-5', taskGridVars['task_5'], 1, N);
+      moveDownInf('task-6', taskGridVars['task_6'], 1, N);
+
       break;
     case 'a':
     case 'ArrowLeft':
       moveLeftInf('demo-grid', demoGrid, 1, N);
       demoTraces['direc'] += 1;
       trainProceed(demoTraces);
+
+      moveLeftInf('task-1', taskGridVars['task_1'], 1, N);
+      moveLeftInf('task-2', taskGridVars['task_2'], 1, N);
+      moveLeftInf('task-3', taskGridVars['task_3'], 1, N);
+      moveLeftInf('task-4', taskGridVars['task_4'], 1, N);
+      moveLeftInf('task-5', taskGridVars['task_5'], 1, N);
+      moveLeftInf('task-6', taskGridVars['task_6'], 1, N);
+
       break;
     case 'd':
     case 'ArrowRight':
       moveRightInf('demo-grid', demoGrid, 1, N);
       demoTraces['direc'] += 1;
       trainProceed(demoTraces);
+
+      moveRightInf('task-1', taskGridVars['task_1'], 1, N);
+      moveRightInf('task-2', taskGridVars['task_2'], 1, N);
+      moveRightInf('task-3', taskGridVars['task_3'], 1, N);
+      moveRightInf('task-4', taskGridVars['task_4'], 1, N);
+      moveRightInf('task-5', taskGridVars['task_5'], 1, N);
+      moveRightInf('task-6', taskGridVars['task_6'], 1, N);
+
       break;
   }
 }
@@ -230,30 +262,74 @@ introQuizForm.onchange = () => compIsFilled(introAnswers.length + trainingAnswer
 
 /** Tasks */
 let nCorrect = 0;
+let toShow = (mode=='dev')? true: false;
+// cond = 'corner';
 
-let targetGrid = makeGridVars(N, showCenter=0);
-let targetGrid01div = document.getElementById('target-1-grid');
-for (let i = 0; i < N; i++) {
-  let tcCodeList = targetGrid01div.insertRow();
-  for (let j = 0; j < N; j++) {
-    let tcell = tcCodeList.insertCell();
-    tcell.id = `target-1-c` + i.toString() + '-' + j.toString();
-    // tcell.style.border = '#ffffff solid 1px';
-    tcell.style.backgroundColor = 'red';
-  }
+// Set task sequence
+let [task1, task2, task3] = ['unit', 'unit2', 'unit3'];
+if (cond == 'stick') {
+  [task1, task2, task3] = ['stick', 'stick-l', 'stick-vl'];
+} else if (cond == 'corner') {
+  [task1, task2, task3] = ['corner', 'corner2', 'corner3'];
 }
 
 
-
-const taskNextBtn_1 = document.getElementById('task-next-btn-1');
-taskNextBtn_1.onclick = () => {
-  hide('task');
-  showNext('debrief', 'block');
+// Prep data vars
+let taskGridVars = {};
+let taskData = {};
+for (let i = 0; i < 6; i++) {
+  taskGridVars[`task_${i+1}`] = makeGridVars(N, showCenter=false);
+  taskData[`task_${i+1}`] = [];
 }
 
 
+// Make the page
+document.getElementById('task').append(generateTaskDiv(1, 1, makeGridTarget(N, task1, 'target-1-')));
+document.getElementById('task-1-dax').onclick = () => { addSquare('task-1', taskGridVars['task_1'], N); taskData[`task_1`].push('dax');};
+document.getElementById('task-1-wip').onclick = () => { addStick('task-1', taskGridVars['task_1'], N); taskData[`task_1`].push('wip');};
+document.getElementById('task-1-zif').onclick = () => { addTriangle('task-1', taskGridVars['task_1'], N); taskData[`task_1`].push('zif');};
+document.getElementById('task-1-kiki').onclick = () => { rotateRightCenter('task-1', taskGridVars['task_1'], N); taskData[`task_1`].push('kiki');};
+document.getElementById('task-1-next-btn').onclick = () => switchTask('task-1', 'task-2', 'block');
 
 
+document.getElementById('task').append(generateTaskDiv(2, 2, makeGridTarget(N, task2, 'target-2-'), toShow));
+document.getElementById('task-2-dax').onclick = () => { addSquare('task-2', taskGridVars['task_2'], N); taskData[`task_2`].push('dax');};
+document.getElementById('task-2-wip').onclick = () => { addStick('task-2', taskGridVars['task_2'], N); taskData[`task_2`].push('wip');};
+document.getElementById('task-2-zif').onclick = () => { addTriangle('task-2', taskGridVars['task_2'], N); taskData[`task_2`].push('zif');};
+document.getElementById('task-2-kiki').onclick = () => { rotateRightCenter('task-2', taskGridVars['task_2'], N); taskData[`task_2`].push('kiki');};
+document.getElementById('task-2-next-btn').onclick = () => switchTask('task-2', 'task-3', 'block');
+
+
+document.getElementById('task').append(generateTaskDiv(3, 3, makeGridTarget(N, task3, 'target-3-'), toShow));
+document.getElementById('task-3-dax').onclick = () => { addSquare('task-3', taskGridVars['task_3'], N); taskData[`task_3`].push('dax');};
+document.getElementById('task-3-wip').onclick = () => { addStick('task-3', taskGridVars['task_3'], N); taskData[`task_3`].push('wip');};
+document.getElementById('task-3-zif').onclick = () => { addTriangle('task-3', taskGridVars['task_3'], N); taskData[`task_3`].push('zif');};
+document.getElementById('task-3-kiki').onclick = () => { rotateRightCenter('task-3', taskGridVars['task_3'], N); taskData[`task_3`].push('kiki');};
+document.getElementById('task-3-next-btn').onclick = () => switchTask('task-3', 'task-4', 'block');
+
+
+document.getElementById('task').append(generateTaskDiv(4, 0, makeGridTarget(N, 'cross', 'target-4-'), toShow));
+document.getElementById('task-4-dax').onclick = () => { addSquare('task-4', taskGridVars['task_4'], N); taskData[`task_4`].push('dax');};
+document.getElementById('task-4-wip').onclick = () => { addStick('task-4', taskGridVars['task_4'], N); taskData[`task_4`].push('wip');};
+document.getElementById('task-4-zif').onclick = () => { addTriangle('task-4', taskGridVars['task_4'], N); taskData[`task_4`].push('zif');};
+document.getElementById('task-4-kiki').onclick = () => { rotateRightCenter('task-4', taskGridVars['task_4'], N); taskData[`task_4`].push('kiki');};
+document.getElementById('task-4-next-btn').onclick = () => switchTask('task-4', 'task-5', 'block');
+
+
+document.getElementById('task').append(generateTaskDiv(5, 0, makeGridTarget(N, 'block', 'target-5-'), toShow));
+document.getElementById('task-5-dax').onclick = () => { addSquare('task-5', taskGridVars['task_5'], N); taskData[`task_5`].push('dax');};
+document.getElementById('task-5-wip').onclick = () => { addStick('task-5', taskGridVars['task_5'], N); taskData[`task_5`].push('wip');};
+document.getElementById('task-5-zif').onclick = () => { addTriangle('task-5', taskGridVars['task_5'], N); taskData[`task_5`].push('zif');};
+document.getElementById('task-5-kiki').onclick = () => { rotateRightCenter('task-5', taskGridVars['task_5'], N); taskData[`task_5`].push('kiki');};
+document.getElementById('task-5-next-btn').onclick = () => switchTask('task-5', 'task-6', 'block');
+
+
+document.getElementById('task').append(generateTaskDiv(6, 0, makeGridTarget(N, 'circle', 'target-6-'), toShow));
+document.getElementById('task-6-dax').onclick = () => { addSquare('task-6', taskGridVars['task_6'], N); taskData[`task_6`].push('dax');};
+document.getElementById('task-6-wip').onclick = () => { addStick('task-6', taskGridVars['task_6'], N); taskData[`task_6`].push('wip');};
+document.getElementById('task-6-zif').onclick = () => { addTriangle('task-6', taskGridVars['task_6'], N); taskData[`task_6`].push('zif');};
+document.getElementById('task-6-kiki').onclick = () => { rotateRightCenter('task-6', taskGridVars['task_6'], N); taskData[`task_6`].push('kiki');};
+document.getElementById('task-6-next-btn').onclick = () => { switchTask('task', 'debrief', 'block'); console.log(taskData)};
 
 
 

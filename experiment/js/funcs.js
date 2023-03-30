@@ -15,17 +15,16 @@ function hide(id) {
   let div = document.getElementById(id);
   div.style.display = "none";
 }
+function switchTask(idToHide, idToShow, style) {
+  hide(idToHide);
+  showNext(idToShow, style)
+}
 function createCustomElement (type = 'div', className, id) {
   let element = (["svg", "polygon"].indexOf(type) < 0)?
     document.createElement(type):
     document.createElementNS("http://www.w3.org/2000/svg", type);
   if (className.length > 0) element.setAttribute("class", className);
-  element.setAttribute("id", id);
-  return element;
-}
-function createDivWithStyle (className = "div", id = "", style = "") {
-  let element = createCustomElement('div', className, id);
-  setStyle(element, style);
+  if (id.length > 0) element.setAttribute("id", id);
   return element;
 }
 function createText(h = "h1", text = 'hello') {
@@ -88,11 +87,11 @@ function compIsFilled (nChecks) {
 
 
 /* Grid generator */
-function makeGridVars(n, showCenter = true) {
+function makeGridVars(n, showCenter = true, prefix='') {
   let varList = {};
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
-      let cId = makeUnit(i, j);
+      let cId = makeUnit(i, j, prefix);
       if (showCenter && i==Math.floor(n/2) && j==Math.floor(n/2)) {
         varList[cId] = 1;
       } else {
@@ -102,6 +101,95 @@ function makeGridVars(n, showCenter = true) {
   }
   return varList
 }
+
+function makeGridTarget(n, opt, prefix) {
+  let varList = makeGridVars(n, false, prefix);
+  let [ centerX, centerY ] = [ Math.floor(n/2), Math.floor(n/2) ];
+  switch(opt) {
+    case 'unit':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      break;
+    case 'unit2':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      break;
+    case 'unit3':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      break;
+    case 'stick':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+1, prefix)] = 1;
+      break;
+    case 'stick-l':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-2, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+2, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+3, prefix)] = 1;
+      break;
+    case 'stick-vl':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-2, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+2, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-3, centerY, prefix)] = 1;
+      break;
+    case 'corner':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX-1, centerY, prefix)] = 1;
+      break;
+    case 'corner2':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      break;
+    case 'corner3':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      break;
+    case 'cross':
+      varList[makeUnit(centerX-1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+1, prefix)] = 1;
+      break;
+    case 'block':
+      varList[makeUnit(centerX-1, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX-1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-1, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY+1, prefix)] = 1;
+      break;
+    case 'circle':
+      varList[makeUnit(centerX-1, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX-1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-1, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY+1, prefix)] = 1;
+      break;
+    default:
+      break;
+  }
+  return varList;
+}
+
+
+
 
 /* Key-maker button functions */
 function recordClick(div, tabVars) {
@@ -117,8 +205,12 @@ function setInitClick(div, divPostId, tabVarThis, tabVarPost) {
   const repCellId = divPostId + '-' + cellId;
   document.getElementById(repCellId).style.backgroundColor = (tabVarPost[cellId] % 2 == 1) ? 'black' : 'white';
 }
-function getX(tabId) {
-  return parseInt(tabId.slice(1).split('-')[0])
+function getX(tabId, prefix='') {
+  if (prefix.length > 0) {
+    console.log(tabId);
+  } else {
+    return parseInt(tabId.slice(1).split('-')[0])
+  }
 }
 function getY(tabId) {
   return parseInt(tabId.slice(1).split('-')[1])
@@ -126,8 +218,8 @@ function getY(tabId) {
 function matchLimit(x, limit) {
   return (x < 0)? x + limit: x % limit;
 }
-function makeUnit(x, y) {
-  return `c${x}-${y}`
+function makeUnit(x, y, prefix='') {
+  return `${prefix}c${x}-${y}`;
 }
 function getCurrentBlocks (tabVars) {
   const selected = []
@@ -137,7 +229,8 @@ function getCurrentBlocks (tabVars) {
   return selected
 }
 function fillBlock (divPrefix, tabVars, blockId) {
-  let blockEl = document.getElementById(`${divPrefix}-${blockId}`);
+  let elId = (divPrefix.length > 0) ? `${divPrefix}-${blockId}`: blockId;
+  let blockEl = document.getElementById(elId);
   blockEl.style.backgroundColor = 'black';
   tabVars[blockId] += 1;
 }
@@ -379,7 +472,96 @@ function addStick(divPrefix, tabVars, tabLen) {
 
 
 
+function showTaskLimit(limit = 0) {
+  if (limit == 0) {
+    return 'No limit on button presses.'
+  } else if (limit == 1) {
+    return 'You can use only 1 button press.'
+  } else {
+    return `You can use ${limit} button presses.`
+  }
+}
+function drawTarget(divEl, prefix, gridVar) {
+  for (let i = 0; i < N; i++) {
+    let tcCodeList = divEl.insertRow();
+    for (let j = 0; j < N; j++) {
+      let tcell = tcCodeList.insertCell();
+      let cellId = makeUnit(i, j, prefix);
+      tcell.id = cellId;
+      tcell.style.backgroundColor = (gridVar[cellId] > 0)? 'black': '#fafafa';
+    }
+  }
+  return divEl
+}
 
+function generateTaskDiv(index, limit=1, gridVar, display=true) {
+  const taskDiv = createCustomElement('div', '', `task-${index}`);
+
+  const baseDiv = createCustomElement('div', 'frame-simple', '');
+  baseDiv.append(createText('h2', `Task ${index} / 6`));
+
+  const taskWrapper = createCustomElement('div', 'taskwrapper', '');
+
+  const targetGroup = createCustomElement('div', 'targetgroup', `target-${index}-group`);
+  const targetGrid = createCustomElement('table', 'target-tabs', `target-${index}-grid`)
+  for (let i = 0; i < N; i++) {
+    let tcCodeList = targetGrid.insertRow();
+    for (let j = 0; j < N; j++) {
+      let tcell = tcCodeList.insertCell();
+      let cellId = makeUnit(i, j, `target-${index}-`);
+      tcell.id = cellId;
+      tcell.style.backgroundColor = (gridVar[cellId] > 0)? 'black': '#fafafa';
+    }
+  }
+  targetGroup.append(targetGrid);
+
+
+  const taskGroup = createCustomElement('div', 'taskgroup', `task-${index}-group`);
+
+  const taskDesc = createCustomElement('div', '', '');
+  taskDesc.style.marginLeft = '55px';
+  taskDesc.append(document.createTextNode(showTaskLimit(limit)));
+
+  const taskbox = createCustomElement('div', 'taskbox', '');
+  const taskinnerbox = createCustomElement('div', 'taskinnerbox', '');
+  let taskGrid = createCustomElement('table', 'demo-tabs', `task-${index}-grid`);
+  for (let i = 0; i < N; i++) {
+    let tcCodeList = taskGrid.insertRow();
+    for (let j = 0; j < N; j++) {
+      let tcell = tcCodeList.insertCell();
+      let cellId = makeUnit(i, j, `task-${index}-`);
+      tcell.id = cellId;
+      tcell.style.backgroundColor = '#fff';
+    }
+  }
+
+  taskinnerbox.append(taskGrid);
+
+  const keyButtonGroup = createCustomElement('div', 'key-button-group', '');
+  keyButtonGroup.append(createBtn(`task-${index}-dax`, 'Dax', true, 'key-button'));
+  keyButtonGroup.append(createBtn(`task-${index}-wip`, 'Wip', true, 'key-button'));
+  keyButtonGroup.append(createBtn(`task-${index}-zif`, 'Zif', true, 'key-button'));
+  keyButtonGroup.append(createBtn(`task-${index}-kiki`, 'Kiki', true, 'key-button'));
+
+  taskbox.append(taskinnerbox);
+  taskbox.append(keyButtonGroup);
+
+  taskGroup.append(taskDesc);
+  taskGroup.append(taskbox);
+
+  taskWrapper.append(targetGroup);
+  taskWrapper.append(taskGroup);
+  baseDiv.append(taskWrapper);
+
+  const btnDiv = createCustomElement('div', 'button-group-vc', '');
+  btnDiv.append(createBtn(`task-${index}-next-btn`, 'Next', true, 'big-button'));
+
+  taskDiv.append(baseDiv);
+  taskDiv.append(btnDiv);
+
+  taskDiv.style.display =  display? 'block': 'none';
+  return taskDiv;
+}
 
 
 /* Bebrief form */
