@@ -532,9 +532,12 @@ function generateTaskDiv(index, limit=1, gridVar, display=true) {
       let cellId = makeUnit(i, j, `task-${index}-`);
       tcell.id = cellId;
       tcell.style.backgroundColor = '#fff';
+      tcell.style.border='#fff solid 1px';
+      if (i == Math.floor(N/2) & j == Math.floor(N/2)) {
+        tcell.style.borderColor='red';
+      }
     }
   }
-
   taskinnerbox.append(taskGrid);
 
   const keyButtonGroup = createCustomElement('div', 'key-button-group', '');
