@@ -474,11 +474,11 @@ function addStick(divPrefix, tabVars, tabLen) {
 
 function showTaskLimit(limit = 0) {
   if (limit == 0) {
-    return 'No limit on button presses.'
+    return 'No limit on button clicks.'
   } else if (limit == 1) {
-    return 'You can use only 1 button press.'
+    return 'You can use only 1 button click.'
   } else {
-    return `You can use up to ${limit} button presses.`
+    return `You can use up to ${limit} button clicks.`
   }
 }
 function drawTarget(divEl, prefix, gridVar) {

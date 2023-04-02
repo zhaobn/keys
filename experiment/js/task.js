@@ -17,11 +17,11 @@ let subjectData = {};
 if (mode == '') {
   subjectData['prolific_id'] = 'NA';
   hide('prolific_id');
-  // showNext('training', 'block');
+  showNext('training', 'block');
   // showNext('training-quiz', 'block');
   // showNext('instruction', 'block');
   // showNext('instruction-quiz', 'block');
-  showNext('task', 'block');
+  // showNext('task', 'block');
   // showNext('debrief', 'block');
   // showCompletion('XXXX', 0);
 
@@ -284,7 +284,7 @@ for (let i = 0; i < 6; i++) {
 }
 
 
-// Track button presses
+// Track button clicks
 function checkBtnStatus(status, prefix, limit) {
   if (Object.values(status).reduce((a, b) => a + b, 0) >= limit) {
     BTNS.forEach(el => document.getElementById(`${prefix}-${el}`).disabled = true);
