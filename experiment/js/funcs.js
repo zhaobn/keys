@@ -584,8 +584,9 @@ function showCompletion(code, nCorrect) {
   let bonusVal = nCorrect * 1.0;
   bonusVal = Math.round(bonusVal*100)/100;
   let t = document.createTextNode(code);
-  let co = createText('p', `You completed ${nCorrect} tasks successfully!
-  You will get ${bonusVal} pounds bonus on top of your base pay.`)
+  let co = createText('p', 'We will check how many tasks you solved successfully and pay you the bonus in five working days.')
+  // let co = createText('p', `You completed ${nCorrect} tasks successfully!
+  // You will get ${bonusVal} pounds bonus on top of your base pay.`)
   // let returnLink = createCustomElement('p', '', '')
   // returnLink.innerHTML = `Click <a href='https://app.prolific.co/submissions/complete?cc=${code}'>here</a> to redirect to Prolific.`
   document.getElementById('completion-code').append(t);
