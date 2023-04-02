@@ -478,7 +478,7 @@ function showTaskLimit(limit = 0) {
   } else if (limit == 1) {
     return 'You can use only 1 button press.'
   } else {
-    return `You can use ${limit} button presses.`
+    return `You can use up to ${limit} button presses.`
   }
 }
 function drawTarget(divEl, prefix, gridVar) {

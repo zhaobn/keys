@@ -273,38 +273,113 @@ if (cond == 'stick') {
   [task1, task2, task3] = ['corner', 'corner2', 'corner3'];
 }
 
-
 // Prep data vars
-let taskGridVars = {};
-let taskData = {};
+const BTNS = ['dax', 'wip', 'zif', 'kiki'];
+let [ taskGridVars, taskData, taskBtnClicks ] = [ {}, {}, {} ];
 for (let i = 0; i < 6; i++) {
   taskGridVars[`task_${i+1}`] = makeGridVars(N, showCenter=false);
   taskData[`task_${i+1}`] = [];
+  taskBtnClicks[`task_${i+1}`] = {};
+  BTNS.forEach(el => taskBtnClicks[`task_${i+1}`][el] = 0);
+}
+
+
+// Track button presses
+function checkBtnStatus(status, prefix, limit) {
+  if (Object.values(status).reduce((a, b) => a + b, 0) >= limit) {
+    BTNS.forEach(el => document.getElementById(`${prefix}-${el}`).disabled = true);
+  }
 }
 
 
 // Make the page
 document.getElementById('task').append(generateTaskDiv(1, 1, makeGridTarget(N, task1, 'target-1-')));
-document.getElementById('task-1-dax').onclick = () => { addSquare('task-1', taskGridVars['task_1'], N); taskData[`task_1`].push('dax');};
-document.getElementById('task-1-wip').onclick = () => { addStick('task-1', taskGridVars['task_1'], N); taskData[`task_1`].push('wip');};
-document.getElementById('task-1-zif').onclick = () => { addTriangle('task-1', taskGridVars['task_1'], N); taskData[`task_1`].push('zif');};
-document.getElementById('task-1-kiki').onclick = () => { rotateRightCenter('task-1', taskGridVars['task_1'], N); taskData[`task_1`].push('kiki');};
+document.getElementById('task-1-dax').onclick = () => {
+  addSquare('task-1', taskGridVars['task_1'], N);
+  taskData['task_1'].push('dax');
+  taskBtnClicks['task_1']['dax'] += 1;
+  checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
+};
+document.getElementById('task-1-wip').onclick = () => {
+  addStick('task-1', taskGridVars['task_1'], N);
+  taskData[`task_1`].push('wip');
+  taskBtnClicks['task_1']['wip'] += 1;
+  checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
+};
+document.getElementById('task-1-zif').onclick = () => {
+  addTriangle('task-1', taskGridVars['task_1'], N);
+  taskData[`task_1`].push('zif');
+  taskBtnClicks['task_1']['zif'] += 1;
+  checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
+};
+document.getElementById('task-1-kiki').onclick = () => {
+  rotateRightCenter('task-1', taskGridVars['task_1'], N);
+  taskData[`task_1`].push('kiki');
+  taskBtnClicks['task_1']['kiki'] += 1;
+  checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
+};
 document.getElementById('task-1-next-btn').onclick = () => switchTask('task-1', 'task-2', 'block');
 
 
 document.getElementById('task').append(generateTaskDiv(2, 2, makeGridTarget(N, task2, 'target-2-'), toShow));
-document.getElementById('task-2-dax').onclick = () => { addSquare('task-2', taskGridVars['task_2'], N); taskData[`task_2`].push('dax');};
-document.getElementById('task-2-wip').onclick = () => { addStick('task-2', taskGridVars['task_2'], N); taskData[`task_2`].push('wip');};
-document.getElementById('task-2-zif').onclick = () => { addTriangle('task-2', taskGridVars['task_2'], N); taskData[`task_2`].push('zif');};
-document.getElementById('task-2-kiki').onclick = () => { rotateRightCenter('task-2', taskGridVars['task_2'], N); taskData[`task_2`].push('kiki');};
+document.getElementById('task-2-dax').onclick = () => {
+  addSquare('task-2', taskGridVars['task_2'], N);
+  taskData[`task_2`].push('dax');
+  taskBtnClicks['task_2']['dax'] += 1;
+  checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
+
+};
+document.getElementById('task-2-wip').onclick = () => {
+  addStick('task-2', taskGridVars['task_2'], N);
+  taskData[`task_2`].push('wip');
+  taskBtnClicks['task_2']['wip'] += 1;
+  checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
+
+};
+document.getElementById('task-2-zif').onclick = () => {
+  addTriangle('task-2', taskGridVars['task_2'], N);
+  taskData[`task_2`].push('zif');
+  taskBtnClicks['task_2']['zif'] += 1;
+  checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
+
+};
+document.getElementById('task-2-kiki').onclick = () => {
+  rotateRightCenter('task-2', taskGridVars['task_2'], N);
+  taskData[`task_2`].push('kiki');
+  taskBtnClicks['task_2']['kiki'] += 1;
+  checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
+};
 document.getElementById('task-2-next-btn').onclick = () => switchTask('task-2', 'task-3', 'block');
 
 
 document.getElementById('task').append(generateTaskDiv(3, 3, makeGridTarget(N, task3, 'target-3-'), toShow));
-document.getElementById('task-3-dax').onclick = () => { addSquare('task-3', taskGridVars['task_3'], N); taskData[`task_3`].push('dax');};
-document.getElementById('task-3-wip').onclick = () => { addStick('task-3', taskGridVars['task_3'], N); taskData[`task_3`].push('wip');};
-document.getElementById('task-3-zif').onclick = () => { addTriangle('task-3', taskGridVars['task_3'], N); taskData[`task_3`].push('zif');};
-document.getElementById('task-3-kiki').onclick = () => { rotateRightCenter('task-3', taskGridVars['task_3'], N); taskData[`task_3`].push('kiki');};
+document.getElementById('task-3-dax').onclick = () => {
+  addSquare('task-3', taskGridVars['task_3'], N);
+  taskData[`task_3`].push('dax');
+  taskBtnClicks['task_3']['dax'] += 1;
+  checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
+
+};
+document.getElementById('task-3-wip').onclick = () => {
+  addStick('task-3', taskGridVars['task_3'], N);
+  taskData[`task_3`].push('wip');
+  taskBtnClicks['task_3']['wip'] += 1;
+  checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
+
+};
+document.getElementById('task-3-zif').onclick = () => {
+  addTriangle('task-3', taskGridVars['task_3'], N);
+  taskData[`task_3`].push('zif');
+  taskBtnClicks['task_3']['zif'] += 1;
+  checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
+};
+document.getElementById('task-3-kiki').onclick = () => {
+  rotateRightCenter('task-3', taskGridVars['task_3'], N);
+  taskData[`task_3`].push('kiki');
+  taskBtnClicks['task_3']['kiki'] += 1;
+  checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
+
+};
 document.getElementById('task-3-next-btn').onclick = () => switchTask('task-3', 'task-4', 'block');
 
 
