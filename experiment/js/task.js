@@ -1,9 +1,9 @@
 
-const mode = '' // '', 'dev', 'live'
+const mode = 'live' // '', 'dev', 'live'
 
 /** Pick a condition */
 const conds_for_exp = ['unit', 'stick', 'corner'];
-let cond = 'unit'; // conds_for_exp[Math.floor(Math.random() * conds_for_exp.length)];
+let cond = 'corner'; // conds_for_exp[Math.floor(Math.random() * conds_for_exp.length)];
 (mode===''|mode==='dev')? console.log(`${mode} mode; condition ${cond}.`) : null;
 
 const start_time = Date.now();
@@ -55,7 +55,7 @@ function trainProceed(clickHistory) {
 
 
 // Draw grid
-const N = 7;
+const N = 9;
 let demoGrid = makeGridVars(N, showCenter=0);
 let demoGridDiv = document.getElementById('demo-grid');
 for (let i = 0; i < N; i++) {
