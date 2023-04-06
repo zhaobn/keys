@@ -182,7 +182,14 @@ function makeGridTarget(n, opt, prefix) {
       varList[makeUnit(centerX, centerY+1, prefix)] = 1;
       varList[makeUnit(centerX+1, centerY+1, prefix)] = 1;
       break;
-    default:
+    case 'bigl':
+      varList[makeUnit(centerX, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX+2, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-1, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-2, centerY, prefix)] = 1;
+      varList[makeUnit(centerX-2, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX-2, centerY+2, prefix)] = 1;
       break;
   }
   return varList;
@@ -498,7 +505,7 @@ function generateTaskDiv(index, limit=1, gridVar, display=true) {
   const taskDiv = createCustomElement('div', '', `task-${index}`);
 
   const baseDiv = createCustomElement('div', 'frame-simple', '');
-  baseDiv.append(createText('h2', `Task ${index} / 6`));
+  baseDiv.append(createText('h2', `Task ${index} / 7`));
 
   const taskWrapper = createCustomElement('div', 'taskwrapper', '');
 

@@ -1,5 +1,5 @@
 
-const mode = 'live' // '', 'dev', 'live'
+const mode = 'dev' // '', 'dev', 'live'
 
 /** Pick a condition */
 const conds_for_exp = ['unit', 'stick', 'corner'];
@@ -14,14 +14,14 @@ let start_task_time = 0;
 /** Collect prolific id */
 let subjectData = {};
 
-if (mode == '') {
+if (mode == '' | mode == 'dev') {
   subjectData['prolific_id'] = 'NA';
   hide('prolific_id');
-  showNext('training', 'block');
+  // showNext('training', 'block');
   // showNext('training-quiz', 'block');
   // showNext('instruction', 'block');
   // showNext('instruction-quiz', 'block');
-  // showNext('task', 'block');
+  showNext('task', 'block');
   // showNext('debrief', 'block');
   // showCompletion('XXXX', 0);
 
@@ -72,8 +72,8 @@ document.getElementById(`demo-grid-${centerCellId}`).style.borderColor='red';
 
 // Buttton functionalities
 const demoUniBtn = document.getElementById('playgd-dax');
-const demoStickBtn = document.getElementById('playgd-wif');
-const demoTriBtn = document.getElementById('playgd-zip');
+const demoStickBtn = document.getElementById('playgd-wip');
+const demoTriBtn = document.getElementById('playgd-zif');
 const demoRotateBtn = document.getElementById('playgd-kiki');
 const demoClearBtn = document.getElementById('training-clear-btn');
 
@@ -99,8 +99,11 @@ function checkKey(e) {
       moveUpInf('task-4', taskGridVars['task_4'], 1, N);
       moveUpInf('task-5', taskGridVars['task_5'], 1, N);
       moveUpInf('task-6', taskGridVars['task_6'], 1, N);
+      moveUpInf('task-7', taskGridVars['task_7'], 1, N);
 
       break;
+
+
     case 's':
     case 'ArrowDown':
       moveDownInf('demo-grid', demoGrid, 1, N);
@@ -113,8 +116,11 @@ function checkKey(e) {
       moveDownInf('task-4', taskGridVars['task_4'], 1, N);
       moveDownInf('task-5', taskGridVars['task_5'], 1, N);
       moveDownInf('task-6', taskGridVars['task_6'], 1, N);
+      moveDownInf('task-7', taskGridVars['task_7'], 1, N);
 
       break;
+
+
     case 'a':
     case 'ArrowLeft':
       moveLeftInf('demo-grid', demoGrid, 1, N);
@@ -127,8 +133,11 @@ function checkKey(e) {
       moveLeftInf('task-4', taskGridVars['task_4'], 1, N);
       moveLeftInf('task-5', taskGridVars['task_5'], 1, N);
       moveLeftInf('task-6', taskGridVars['task_6'], 1, N);
+      moveLeftInf('task-7', taskGridVars['task_7'], 1, N);
 
       break;
+
+
     case 'd':
     case 'ArrowRight':
       moveRightInf('demo-grid', demoGrid, 1, N);
@@ -141,6 +150,7 @@ function checkKey(e) {
       moveRightInf('task-4', taskGridVars['task_4'], 1, N);
       moveRightInf('task-5', taskGridVars['task_5'], 1, N);
       moveRightInf('task-6', taskGridVars['task_6'], 1, N);
+      moveRightInf('task-7', taskGridVars['task_7'], 1, N);
 
       break;
   }
@@ -177,7 +187,7 @@ const trainingRetryBtn = document.getElementById('training-retry-btn');
 const trainingQuizCheckBtn = document.getElementById('training-quiz-check-btn');
 
 const trainingChecks = [ 'check1', 'check2', 'check3', 'check4', 'check5' ];
-const trainingAnswers = [ 'dax', 'zip', 'wif', 'right90', 'yes' ];
+const trainingAnswers = [ 'wip', 'dax', 'zif', 'right90', 'yes' ];
 
 trainingQuizCheckBtn.onclick = () => {
   trainingQuizCheckBtn.style.display = 'none';
@@ -276,7 +286,7 @@ if (cond == 'stick') {
 // Prep data vars
 const BTNS = ['dax', 'wip', 'zif', 'kiki'];
 let [ taskGridVars, taskData, taskBtnClicks ] = [ {}, {}, {} ];
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < 7; i++) {
   taskGridVars[`task_${i+1}`] = makeGridVars(N, showCenter=false);
   taskData[`task_${i+1}`] = [];
   taskBtnClicks[`task_${i+1}`] = {};
@@ -404,7 +414,15 @@ document.getElementById('task-6-dax').onclick = () => { addSquare('task-6', task
 document.getElementById('task-6-wip').onclick = () => { addStick('task-6', taskGridVars['task_6'], N); taskData[`task_6`].push('wip');};
 document.getElementById('task-6-zif').onclick = () => { addTriangle('task-6', taskGridVars['task_6'], N); taskData[`task_6`].push('zif');};
 document.getElementById('task-6-kiki').onclick = () => { rotateRightCenter('task-6', taskGridVars['task_6'], N); taskData[`task_6`].push('kiki');};
-document.getElementById('task-6-next-btn').onclick = () => { switchTask('task', 'debrief', 'block'); console.log(taskData)};
+document.getElementById('task-6-next-btn').onclick = () => switchTask('task-6', 'task-7', 'block');
+
+
+document.getElementById('task').append(generateTaskDiv(7, 5, makeGridTarget(N, 'bigl', 'target-7-'), toShow));
+document.getElementById('task-7-dax').onclick = () => { addSquare('task-7', taskGridVars['task_7'], N); taskData[`task_7`].push('dax');};
+document.getElementById('task-7-wip').onclick = () => { addStick('task-7', taskGridVars['task_7'], N); taskData[`task_7`].push('wip');};
+document.getElementById('task-7-zif').onclick = () => { addTriangle('task-7', taskGridVars['task_7'], N); taskData[`task_7`].push('zif');};
+document.getElementById('task-7-kiki').onclick = () => { rotateRightCenter('task-7', taskGridVars['task_7'], N); taskData[`task_7`].push('kiki');};
+document.getElementById('task-7-next-btn').onclick = () => switchTask('task', 'debrief', 'block');
 
 
 
@@ -425,20 +443,36 @@ doneBtn.onclick = () => {
   const end_time = new Date();
   let token = generateToken(8);
 
+  subjectData['condition'] = cond;
+  subjectData['date'] = formatDates(end_time, 'date');
+  subjectData['time'] = formatDates(end_time, 'time');
+  subjectData['instructions_duration'] = start_task_time - start_time;
+  subjectData['task_duration'] = end_time - start_task_time;
+  subjectData['token'] = token;
+
   let clientData = {};
-  clientData.subject = subjectData;
-  clientData.subject.condition = cond;
-  clientData.subject.date = formatDates(end_time, 'date');
-  clientData.subject.time = formatDates(end_time, 'time');
-  clientData.subject.instructions_duration = start_task_time - start_time;
-  clientData.subject.task_duration = end_time - start_task_time;
-  clientData.subject.token = token;
-  // clientData.trials = trialData;
+  clientData.subject = JSON.stringify(subjectData);
+  clientData.trials = JSON.stringify(taskData);
+  clientData.states = JSON.stringify(taskGridVars);
 
 
-  showCompletion('8692C148', nCorrect);
+  showCompletion('C12721UB', nCorrect);
   console.log(clientData);
   // download(JSON.stringify(clientData), 'data.txt', '"text/csv"');
-
-
+  fetch("static/php/save_data.php", {
+    method: 'post',
+    body: clientData,
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+  }).then((response) => {
+    return response.json()
+  }).then((res) => {
+    if (res.status === 201) {
+        console.log("Post successfully created!")
+    }
+  }).catch((error) => {
+    console.log(error)
+  })
 };
