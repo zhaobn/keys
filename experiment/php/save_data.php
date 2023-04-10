@@ -7,16 +7,18 @@
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 
-	// Get values passed from JS
+
 	$date = date('Y-m-d');
-	$exp = 'shape0-pilot';
-	$condition=$_POST['subject']['condition'];
-	$subject = $_POST['subject'];
-	$trial = $_POST['trials'];
-	$extra=$_POST['states'];
+	$exp = 'shape-pilot';
+
+	// Get values passed from JS
+	$data = json_decode(file_get_contents('php://input'), true);
+	$subject = $data['subject'];
+	$trial = $data['trials'];
+	$extra = $data['states'];
 
 	//Create a query
-	$query = "INSERT INTO bnz_shape (date,exp,condition,subject,trial,extra) VALUES ('{$date}', '{$exp}','{$condition}','{$subject}','{$trial}','{$extra}'";
+	$query = "INSERT INTO bnz_shape (date,exp,subject,trial,extra) VALUES ('{$date}','{$exp}','{$subject}','{$trial}','{$extra}')";
 
 	//Do it
 	mysqli_query($mysqli, $query);

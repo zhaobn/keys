@@ -1,9 +1,9 @@
 
-const mode = 'dev' // '', 'dev', 'live'
+const mode = 'live' // '', 'dev', 'live'
 
 /** Pick a condition */
 const conds_for_exp = ['unit', 'stick', 'corner'];
-let cond = 'corner'; // conds_for_exp[Math.floor(Math.random() * conds_for_exp.length)];
+let cond = conds_for_exp[Math.floor(Math.random() * conds_for_exp.length)];
 (mode===''|mode==='dev')? console.log(`${mode} mode; condition ${cond}.`) : null;
 
 const start_time = Date.now();
@@ -187,7 +187,7 @@ const trainingRetryBtn = document.getElementById('training-retry-btn');
 const trainingQuizCheckBtn = document.getElementById('training-quiz-check-btn');
 
 const trainingChecks = [ 'check1', 'check2', 'check3', 'check4', 'check5' ];
-const trainingAnswers = [ 'wip', 'dax', 'zif', 'right90', 'yes' ];
+const trainingAnswers = [ 'zif', 'dax', 'wip', 'right90', 'yes' ];
 
 trainingQuizCheckBtn.onclick = () => {
   trainingQuizCheckBtn.style.display = 'none';
@@ -307,26 +307,26 @@ document.getElementById('task').append(generateTaskDiv(1, 1, makeGridTarget(N, t
 document.getElementById('task-1-dax').onclick = () => {
   addSquare('task-1', taskGridVars['task_1'], N);
   taskData['task_1'].push('dax');
-  taskBtnClicks['task_1']['dax'] += 1;
-  checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
+  // taskBtnClicks['task_1']['dax'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
 };
 document.getElementById('task-1-wip').onclick = () => {
   addStick('task-1', taskGridVars['task_1'], N);
   taskData[`task_1`].push('wip');
-  taskBtnClicks['task_1']['wip'] += 1;
-  checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
+  // taskBtnClicks['task_1']['wip'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
 };
 document.getElementById('task-1-zif').onclick = () => {
   addTriangle('task-1', taskGridVars['task_1'], N);
   taskData[`task_1`].push('zif');
-  taskBtnClicks['task_1']['zif'] += 1;
-  checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
+  // taskBtnClicks['task_1']['zif'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
 };
 document.getElementById('task-1-kiki').onclick = () => {
   rotateRightCenter('task-1', taskGridVars['task_1'], N);
   taskData[`task_1`].push('kiki');
-  taskBtnClicks['task_1']['kiki'] += 1;
-  checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
+  // taskBtnClicks['task_1']['kiki'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_1'], 'task-1', 1);
 };
 document.getElementById('task-1-next-btn').onclick = () => switchTask('task-1', 'task-2', 'block');
 
@@ -335,29 +335,29 @@ document.getElementById('task').append(generateTaskDiv(2, 2, makeGridTarget(N, t
 document.getElementById('task-2-dax').onclick = () => {
   addSquare('task-2', taskGridVars['task_2'], N);
   taskData[`task_2`].push('dax');
-  taskBtnClicks['task_2']['dax'] += 1;
-  checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
+  // taskBtnClicks['task_2']['dax'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
 
 };
 document.getElementById('task-2-wip').onclick = () => {
   addStick('task-2', taskGridVars['task_2'], N);
   taskData[`task_2`].push('wip');
-  taskBtnClicks['task_2']['wip'] += 1;
-  checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
+  // taskBtnClicks['task_2']['wip'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
 
 };
 document.getElementById('task-2-zif').onclick = () => {
   addTriangle('task-2', taskGridVars['task_2'], N);
   taskData[`task_2`].push('zif');
-  taskBtnClicks['task_2']['zif'] += 1;
-  checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
+  // taskBtnClicks['task_2']['zif'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
 
 };
 document.getElementById('task-2-kiki').onclick = () => {
   rotateRightCenter('task-2', taskGridVars['task_2'], N);
   taskData[`task_2`].push('kiki');
-  taskBtnClicks['task_2']['kiki'] += 1;
-  checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
+  // taskBtnClicks['task_2']['kiki'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_2'], 'task-2', 2);
 };
 document.getElementById('task-2-next-btn').onclick = () => switchTask('task-2', 'task-3', 'block');
 
@@ -366,29 +366,28 @@ document.getElementById('task').append(generateTaskDiv(3, 3, makeGridTarget(N, t
 document.getElementById('task-3-dax').onclick = () => {
   addSquare('task-3', taskGridVars['task_3'], N);
   taskData[`task_3`].push('dax');
-  taskBtnClicks['task_3']['dax'] += 1;
-  checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
+  // taskBtnClicks['task_3']['dax'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
 
 };
 document.getElementById('task-3-wip').onclick = () => {
   addStick('task-3', taskGridVars['task_3'], N);
   taskData[`task_3`].push('wip');
-  taskBtnClicks['task_3']['wip'] += 1;
-  checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
+  // taskBtnClicks['task_3']['wip'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
 
 };
 document.getElementById('task-3-zif').onclick = () => {
   addTriangle('task-3', taskGridVars['task_3'], N);
   taskData[`task_3`].push('zif');
-  taskBtnClicks['task_3']['zif'] += 1;
-  checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
+  // taskBtnClicks['task_3']['zif'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
 };
 document.getElementById('task-3-kiki').onclick = () => {
   rotateRightCenter('task-3', taskGridVars['task_3'], N);
   taskData[`task_3`].push('kiki');
-  taskBtnClicks['task_3']['kiki'] += 1;
-  checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
-
+  // taskBtnClicks['task_3']['kiki'] += 1;
+  // checkBtnStatus(taskBtnClicks['task_3'], 'task-3', 3);
 };
 document.getElementById('task-3-next-btn').onclick = () => switchTask('task-3', 'task-4', 'block');
 
@@ -417,7 +416,7 @@ document.getElementById('task-6-kiki').onclick = () => { rotateRightCenter('task
 document.getElementById('task-6-next-btn').onclick = () => switchTask('task-6', 'task-7', 'block');
 
 
-document.getElementById('task').append(generateTaskDiv(7, 5, makeGridTarget(N, 'bigl', 'target-7-'), toShow));
+document.getElementById('task').append(generateTaskDiv(7, 4, makeGridTarget(N, 'bigl', 'target-7-'), toShow));
 document.getElementById('task-7-dax').onclick = () => { addSquare('task-7', taskGridVars['task_7'], N); taskData[`task_7`].push('dax');};
 document.getElementById('task-7-wip').onclick = () => { addStick('task-7', taskGridVars['task_7'], N); taskData[`task_7`].push('wip');};
 document.getElementById('task-7-zif').onclick = () => { addTriangle('task-7', taskGridVars['task_7'], N); taskData[`task_7`].push('zif');};
@@ -457,22 +456,19 @@ doneBtn.onclick = () => {
 
 
   showCompletion('C12721UB', nCorrect);
-  console.log(clientData);
+  // console.log(clientData);
   // download(JSON.stringify(clientData), 'data.txt', '"text/csv"');
-  fetch("static/php/save_data.php", {
+  fetch("../php/save_data.php", {
     method: 'post',
-    body: clientData,
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    }
-  }).then((response) => {
-    return response.json()
-  }).then((res) => {
-    if (res.status === 201) {
-        console.log("Post successfully created!")
-    }
-  }).catch((error) => {
-    console.log(error)
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(clientData)
   })
+    .then(res => {
+      if (res.status == 200) {
+        console.log('Data sent to database')
+      }
+    })
+    .catch(error => console.log(error))
 };

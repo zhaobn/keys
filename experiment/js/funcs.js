@@ -184,12 +184,12 @@ function makeGridTarget(n, opt, prefix) {
       break;
     case 'bigl':
       varList[makeUnit(centerX, centerY, prefix)] = 1;
-      varList[makeUnit(centerX+1, centerY, prefix)] = 1;
-      varList[makeUnit(centerX+2, centerY, prefix)] = 1;
-      varList[makeUnit(centerX-1, centerY, prefix)] = 1;
-      varList[makeUnit(centerX-2, centerY, prefix)] = 1;
-      varList[makeUnit(centerX-2, centerY+1, prefix)] = 1;
-      varList[makeUnit(centerX-2, centerY+2, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY-2, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+1, prefix)] = 1;
+      varList[makeUnit(centerX, centerY+2, prefix)] = 1;
+      varList[makeUnit(centerX+1, centerY-2, prefix)] = 1;
+      varList[makeUnit(centerX+2, centerY-2, prefix)] = 1;
       break;
   }
   return varList;
@@ -483,9 +483,9 @@ function showTaskLimit(limit = 0) {
   if (limit == 0) {
     return 'No limit on button clicks.'
   } else if (limit == 1) {
-    return 'You can use only 1 button click.'
+    return 'Extra bonus if you use only 1 button click.'
   } else {
-    return `You can use up to ${limit} button clicks.`
+    return `Extra bonus if you use up to ${limit} button clicks.`
   }
 }
 function drawTarget(divEl, prefix, gridVar) {
