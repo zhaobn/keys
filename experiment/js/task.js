@@ -261,6 +261,7 @@ introRetryBtn.onclick = () => {
 introPassBtn.onclick = () => {
   hide("instruction-quiz");
   showNext('task', 'block');
+  start_task_time = Date.now();
 }
 
 introQuizForm.onchange = () => compIsFilled(introAnswers.length + trainingAnswers.length) ? introQuizCheckBtn.disabled = false : null;
